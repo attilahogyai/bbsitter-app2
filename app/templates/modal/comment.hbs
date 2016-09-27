@@ -1,0 +1,13 @@
+<h2>{{loc-x '/xprt_data/message'}}</h2>
+<div class="row padding-bottom">
+<div class="column small-12"><p>{{{loc-x '/xprt_data/comment_desc'}}}</p></div>
+<div class="column small-12">{{textarea value=newMessage rows="7" placeholder=messagePlaceholder}}
+</div>
+<div class="column small-12">
+{{#if saved}}
+<a href="#" {{action 'saveMessage'}}  {{bind-attr class=":button :small :success"}}>{{saveButtonText}}</a>
+{{else}}
+<a href="#" {{action 'saveMessage'}}  {{bind-attr class=":button :small saving:disabled saved:success"}}>{{saveButtonText}}</a>
+{{/if}}
+</div>
+</div>

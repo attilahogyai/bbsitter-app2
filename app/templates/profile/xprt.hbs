@@ -1,0 +1,226 @@
+<form data-abide validate id="xprtForm" autocomplete="on" style="margin-bottom:10px">
+<div class="row xprt-nav-page-form">
+  <div class="small-12 medium-4 medium-push-8 columns">
+    <div class="panel comment-panel">
+      <p>{{loc-x '/xprt_data/personal_data_desc'}}</p>
+    </div>
+  </div>
+  <div class="small-12 medium-8 medium-pull-4 columns">
+    <div class="row">
+    
+      {{#if instance.id}}
+      <div class="small-12 columns input-wrapper">
+      <div class="on-off">
+      <fieldset class="switch tiny">
+        {{input type="checkbox" required="true" id="status" name="status" checked=instance.isActive}}
+        <label for="status"></label>
+      </fieldset>&nbsp;<span>{{#if instance.isActive}}{{loc-x '/xprt_data/status_active'}}{{else}}{{loc-x '/xprt_data/status_inactive'}}{{/if}}</span>
+      </div>
+      </div>    
+      {{/if}}
+      
+      <div class="small-12 columns email-field input-wrapper" id="i-name">
+        <label>{{loc-x '/xprt_data/name'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+          {{input value=name type='text' required="true" disabled="true"}}
+        </label>                
+      </div>
+      <div class="small-12 medium-6 columns input-wrapper" id="i-email">
+        <label><i class="fa fa-envelope-o"></i> {{loc-x '/xprt_data/email'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+          {{input value=email required="true" disabled="true"}}
+        </label>                                 
+      </div>
+      <div class="small-12 medium-6 columns input-wrapper" id="i-phone">
+        <label><i class="fa fa-phone"></i> {{loc-x '/xprt_data/phone'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+          {{input value=instance.phone required="true"}}
+        </label>                                 
+      </div>
+      <div class="small-12 medium-6 columns input-wrapper" id="i-birthYear">
+        <label>{{loc-x '/xprt_data/birth_year'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+          {{input value=instance.birthYear required="true"}}
+        </label>                                 
+      </div>
+      <div class="small-12 medium-6 columns input-wrapper" id="i-sex">
+      <label>{{loc-x '/xprt_data/sex'}} * <small class="  error">{{loc-x '/general/mandatory'}}</small></label>
+        <p>
+        <label for="sex_male">{{view 'radiobutton' name="sex" selection=instance.sex value="1" id="sex_male" required="true"}}{{loc-x '/xprt_data/sex_male'}}</label>
+        
+        <label for="sex_female">{{view 'radiobutton' name="sex" selection=instance.sex value="2" id="sex_female" required="true"}}{{loc-x '/xprt_data/sex_female'}}</label>
+        </p>        
+        
+      </div>
+
+      <div class="small-12 columns">
+      <hr>
+      </div>
+    </div>    
+  </div>
+
+  <div class="small-12 medium-4 medium-push-8 columns">
+    <div class="panel comment-panel">
+      <p>{{loc-x '/xprt_data/xprt_data_desc'}}</p>
+    </div>
+  </div>
+  <div class="small-12 medium-8 medium-pull-4 columns">
+    <div class="panel callout radius">
+      <!--div class="row">  
+        <div class="small-12 columns input-wrapper">
+          <label>{{loc-x '/xprt_data/service_location_type'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+          {{!view Ember.Select content=controller.serviceLocationTypeList value=instance.serviceLocationType optionValuePath="content"
+            optionLabelPath="content.desc" required="true"}}          
+          </label>                                 
+        </div>
+      </div-->  
+      
+      <div class="row"> 
+        <div class="small-12 columns input-wrapper"  id="i-country">
+          <label>{{loc-x '/xprt_data/location_country'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+          {{view "select" content=controller.countryList value=instance.country optionValuePath="content"
+            optionLabelPath="content.countryName"}}         
+          </label>
+        </div>
+        <div class="small-12 columns input-wrapper" id="i-targetLocations">
+        <label>{{loc-x '/xprt_data/location_area'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+        </label>
+        <div class="multi-select">
+        {{#each city in instance.targetLocations}}
+        <p data-alert class="alert-box">
+          {{city.cityName}}&nbsp;&nbsp;<a href="#" {{action 'cityRemove' city }}>&times;</a>
+          </p>
+          {{else}}
+          <p data-alert class="alert-box no-data">
+          {{loc-x '/general/please_select'}}
+          </p>
+        {{/each}}
+        </div>
+{{autocomplete-text inputClass="mainSearchInput" labelField='cityName' textField='cityName' inputText=cityName textChangedEvent="cityTextChanged" searchResult=citySearchResult valueSelectedEvent="citySelected" placeholder="/xprt_data/select_location_area" autoSelect="false" emptyAfterSelected="true"}}
+        </div>
+        
+        <div class="small-12 columns input-wrapper no-margin" id="i-educationLevel">
+          <label id="i-education">{{loc-x '/xprt_data/study'}} * <small class="error">{{loc-x '/general/mandatory'}}</small></label>
+            {{view "select" content=controller.educationLevelList optionValuePath="content" value=instance.educationLevel.content
+            optionLabelPath="content.desc" class="no-margin"}}        {{input value=instance.education placeholder="/xprt_data/education"}} 
+        </div>
+
+
+        <div class="small-12 columns input-wrapper" id='i-languages'>
+        <label>{{loc-x '/xprt_data/languages'}} * <small class="error">{{loc-x '/general/mandatory'}}</small></label>
+        <div class="multi-select">
+        {{#each lang in instance.languages}}
+        <p data-alert class="alert-box">
+          {{lang.description}}&nbsp;&nbsp;<a href="#" {{action 'langRemove' lang }}>&times;</a>
+          </p>
+          {{else}}
+          <p data-alert class="alert-box">
+          {{loc-x '/general/please_select'}}
+          </p>
+        {{/each}}
+        </div>
+        {{view "select" content=controller.languageList value=addLanguage optionValuePath="content"
+        optionLabelPath="content.description"}}
+        </div>
+
+        <div class="small-12 medium-6 columns input-wrapper" id='i-intProp1'>
+            <label>{{loc-x '/xprt_data_bbs/int_prop_1'}} * <small class="error">{{loc-x '/general/mandatory'}}</small></label>  
+            {{view "select" content=controller.maxChildList value=instance.intProp1 optionValuePath="content"
+        optionLabelPath="content"}}
+        </div>
+
+        <div class="small-12 medium-6 columns input-wrapper" id='i-experience'>
+            <label>{{loc-x '/xprt_data/experience'}} * <small class="error">{{loc-x '/general/mandatory'}}</small></label>
+            {{input type="number" value=instance.experience min="0"}}
+        </div>
+
+
+        <div class="small-9 columns input-wrapper" id='i-unitPrice'>
+          <label id="upl">{{loc-x '/xprt_data/unit_price'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+            {{input value=instance.unitPrice required="true"}}
+          </label>                                 
+        </div>  
+        <div class="small-3 columns input-wrapper" id='i-currency'>
+          <label id="uplc">{{loc-x '/xprt_data/currency'}}
+            {{view "select" content=controller.currencyList value=instance.currency.content optionValuePath="content"
+            optionLabelPath="content.code"}}          
+          </label>                                 
+        </div>  
+
+        <div class="small-12 medium-6 columns input-wrapper" id="i-driveLicense">
+        <label>{{loc-x '/xprt_data/driveLicense'}} * <small class="  error">{{loc-x '/general/mandatory'}}</small></label>
+          <p>
+          <label for="no_lic">
+          {{view 'radiobutton' name="driveLicense" selection=instance.driveLicense value="1" id="no_lic" required="true"}}{{loc-x '/button/nothave'}}</label>
+          <label for="have_lic">
+          {{view 'radiobutton' name="driveLicense" selection=instance.driveLicense value="2" id="have_lic" required="true"}}{{loc-x '/button/have'}}</label>
+          </p>
+        </div>
+
+        <div class="small-12 medium-6 columns input-wrapper" id="i-ownCar">
+        <label>{{loc-x '/xprt_data/ownCar'}} * <small class="  error">{{loc-x '/general/mandatory'}}</small></label>
+          <p>
+          <label for="no_car">
+          {{view 'radiobutton' name="ownCar" selection=instance.ownCar value="1" id="no_car" required="true"}}{{loc-x '/button/nothave'}}</label>
+          <label for="have_car">
+          {{view 'radiobutton' name="ownCar" selection=instance.ownCar value="2" id="have_car" required="true"}}{{loc-x '/button/have'}}</label>
+          </p>
+        </div>
+
+
+
+        <div class="small-12 columns input-wrapper" id='i-description'>
+          <label id="descid">{{loc-x '/xprt_data/description'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+            {{textarea value=instance.description rows="10"}}
+          </label>                                 
+        </div>          
+        {{#if instance.id}}
+        <div class="small-12 columns input-wrapper text-right">
+        {{#link-to 'profile.xprt.timetable' instance.id class="button small info"}}<i class="fa fa-table"></i> {{loc-x '/profile/timetable'}}{{/link-to}}
+        {{#link-to 'profile.xprt.exceptions' instance.id class="button small info"}}<i class="fa fa-minus"></i> {{loc-x '/profile/timetable_exceptions'}}{{/link-to}}
+        </div>        
+        {{/if}}   
+      </div>  
+
+      {{#liquid-if enableLocationInput}}
+      <div class="row"> 
+        <div class="small-4 columns input-wrapper">
+          <label>{{loc-x '/xprt_data/zip'}}
+            {{input value=instance.zip }}
+          </label>                                 
+        </div>        
+        <div class="small-8 columns input-wrapper">
+          <label>{{loc-x '/xprt_data/address'}} 
+            {{input value=instance.address}}
+          </label>                                 
+        </div>        
+      </div>  
+      {{/liquid-if}}      
+    </div>      
+    <!--div class="panel callout radius">
+      <div class="row"> 
+        <div class="small-6 columns input-wrapper">
+          <label>{{!loc-x '/xprt_data/min_hour'}} * <small class="error">{{!loc-x '/general/mandatory'}}</small>
+            {{!input value=instance.minHour required="true"}}
+          </label>                                 
+        </div>        
+        <div class="small-6 columns input-wrapper">
+          <label>{{!loc-x '/xprt_data/max_hour'}} * <small class="error">{{!loc-x '/general/mandatory'}}</small>
+            {{!input value=instance.maxHour required="true"}}
+          </label>                                 
+        </div>        
+        <div class="small-12 columns input-wrapper text-right">
+          <a href="#" {{!action 'showProfessions'}}>{{loc-x '/xprt_data/set_professions'}}</a>
+          
+        </div>        
+      </div>  
+    </div-->      
+    <div class="row">   
+      <div class="small-12 columns">
+        <button type="button" {{bind-attr class=":button isProcessing:disabled"}} {{action 'doUpdate'}} >{{loc-x '/button/save'}}</button>
+      </div>              
+    </div>
+  </div>
+</div>
+
+<div id="subroute-popup" class="reveal-modal" data-reveal>
+{{outlet}}
+<a href="#" {{action 'closePopup' 'profile.xprt'}} class="close-reveal-modal">&#215;</a>
+</div>
+</form>

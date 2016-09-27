@@ -1,0 +1,36 @@
+<br>
+<b>A találkozóról:</b>
+#if(!$host.getId().equals($initiator.getId()))
+<br>
+#if($addressee.getId().equals($initiator.getId()))
+bébiszitter neve: $!host.getName()
+#else
+ügyfél neve: $!initiator.getName()
+#end
+#end
+<br>tárgya: $!event.getName()
+<br>dátum: $dtf.date($event.getStartDate())
+<br>
+#if($startDateChange || $endDateChange)
+Új iőpont: $dtf.time($event.getStartDate()) - $dtf.time($event.getEndDate())
+#else
+iőpont: $dtf.time($event.getStartDate()) - $dtf.time($event.getEndDate())
+#end
+
+<br>cím: $!event.getAddress().getZip() $!event.getAddress().getCity().getCityName(), $!event.getAddress().getStreet()
+<br>
+<br>
+<b>
+#if($statusChange)
+Új státusz: $statusText
+#else
+Státusz: $statusText
+#end
+</b>
+<br><br>megjegyzés:
+<br>
+#if($actionComment)
+$!helper.textToHtml($actionComment)
+#else
+$!helper.textToHtml($event.getDescription())
+#end

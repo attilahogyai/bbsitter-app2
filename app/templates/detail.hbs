@@ -1,0 +1,143 @@
+<div class="row padding-top">
+<div class="id-panel columns small-12">
+<div class="card">
+	<div class="id-panel-name">
+		<h2>{{xprt.name}}</h2>
+		<div class="fb-share-button" data-href="http://bbsitter.hu/detail/{{xprt.id}}/{{to-ascii xprt.name}}" data-layout="button"></div>
+		<!--div class="rank"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div-->
+		<div class="profileimg-big" style="background-image:url(/api/profileimage?u={{unbound xprt.useraccId}});">
+		</div>
+	</div>
+	<div class="id-panel-lens">
+		<p style="text-transform:lowercase">{{loc-x-b '/xprt_data/age' xprt.age}} {{xprt.sexT}}</p>
+		<p>{{xprt.description}}</p>
+		<hr>
+		<div class="row">
+		<div class="small-6 columns">
+			<p>{{loc-x '/xprt_data/location_area'}}</p>
+		</div>
+		<div class="small-6 columns">
+		{{#each location in xprt.targetLocations}}
+		<p>{{location.cityName}}</p>
+		{{/each}}
+		</div>
+
+		<div class="small-6 columns">
+		<p>{{loc-x '/xprt_data/unit_price'}}</p>
+		</div>
+		<div class="small-6 columns">
+			<p class="price">{{number-format xprt.unitPrice}} {{xprt.currency.flag}}</p>			
+		</div>
+		</div>
+		<hr>
+		<div class="row">
+		<div class="small-6 columns">
+			<p>{{loc-x '/xprt_data/experience'}}</p>
+		</div>
+		<div class="small-6 columns">
+		<p>{{xprt.experience}}</p>
+		</div>
+		</div>
+		<div class="row">		
+		<div class="small-6 columns">
+			<p>{{loc-x '/xprt_data_bbs/int_prop_1'}}</p>
+		</div>
+		<div class="small-6 columns">
+		<p>{{xprt.intProp1}}</p>
+		</div>
+		</div>
+		<div class="row">
+		<div class="small-6 columns">
+			<p>{{loc-x '/xprt_data/study'}}</p>
+		</div>
+		<div class="small-6 columns">
+		<p><i class="fa fa-graduation-cap"></i> {{xprt.education}} / {{xprt.educationLevel.desc}}</p>
+		</div>
+		</div>
+		{{#if xprt.hasDriveLicense}}
+		<div class="row">				
+		<div class="small-6 columns">
+			<p>{{loc-x '/xprt_data/has_drive_lic'}}</p>
+		</div>
+		<div class="small-6 columns">
+		<p>{{{xprt.hasCarT}}}</p>
+		</div>
+		</div>
+		{{/if}}
+		<div class="row">
+		<div class="small-6 columns">
+			<p>{{loc-x '/xprt_data/languages'}}</p>
+		</div>
+		<div class="small-6 columns">
+		{{#each language in xprt.languages}}
+		<p>{{language.description}}</p>
+		{{/each}}
+		</div>
+		<div class="small-12 columns">
+		<a href="#" {{action 'openCommentPopup' xprt.useracc}} class="button tiny"><i class="fa fa-comment"></i> {{loc-x '/xprt_data/send_message'}}</a>
+		</div>
+		</div>
+	</div>	
+</div> 
+</div>
+<div class="columns small-12">
+
+<div class="content-panel box-shadow">
+<h2>{{loc-x '/xprt_data/certificates'}}</h2>
+<div class="row">
+{{#each ids in xprt.checkedIds}}
+<div class="small-12 medium-6 columns">
+	<p><i class="fa fa-check-square-o"></i>
+{{ids.description}}</p>
+</div>
+{{else}}
+<div class="small-12 columns">
+{{loc-x '/xprt_data/no_certs'}}
+</div>
+{{/each}}
+</div>
+</div>
+{{#if showCalendar}}
+<div class="content-panel box-shadow">
+<h2>{{loc-x '/xprt_data/create_schedule'}}</h2>
+<p>{{loc-x '/xprt_data/create_schedule_text'}}</p>
+</div>
+{{#week-events date=actDate class="calendar box-shadow" new="createEvent" next="jumpToNext" prev="jumpToPrev" calendarSetup=calendarSetup periodDays=periodDays weekMode=true 
+xprt=xprt.id host=xprt.useracc.id}}
+{{#each e in eventList}}
+{{view "event" event=e}}
+{{/each}}
+{{/week-events}}
+{{/if}}
+
+	<!-- rank removed in this stage
+	<div class="content-panel opinion-panel">
+		<h2>{{!loc-x '/xprt_data/review'}}</h2>
+		<div class="row padding-bottom">
+		{{!#each rank in rankList}}
+			<div class="column small-5">{{!rank.rankType.desc}}</div>
+			<div class="column small-7 rank">{{!{rank.rankFormat}}}</div>
+		{{!/each}}
+		</div>
+		{{!#each comment in commentList}}
+		
+		<div class="row padding-bottom opinion">
+		<div class="column small-3 medium-2 text-center">
+		<div class="profileimg" style="background-image:url(/api/profileimage?u={{unbound comment.useracc.id}});">
+		</div>
+		<p>{{!comment.useracc.name}}</p></div>
+		<div class="column small-9 medium-10">
+		<p class="border-bottom">{{!date-f comment.createDt 'L'}}</p>
+		<p class="comment">{{!comment.comment}}</p>
+		</div>
+		</div>
+		{{!/each}}
+	</div>
+	-->
+</div>
+</div>
+<div id="subroute-popup" class="reveal-modal" data-reveal>
+{{outlet}}
+{{#link-to 'detail' xprt.id (to-ascii xprt.name) class="close-reveal-modal"}}&#215;{{/link-to}}
+<!--a class="close-reveal-modal">&#215;</a-->
+</div>

@@ -1,0 +1,7 @@
+<div id="{{unbound id}}" {{bind-attr class="view.class"}}>
+{{#unless view.hidden}}
+<div class="name"><a href='#' {{action "edit" view.event}}>
+<i class="fa fa-user"></i> {{view.eventInfo}}<br>
+{{view.event.name}}</a></div>
+{{/unless}}
+</div>

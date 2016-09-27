@@ -1,0 +1,19 @@
+<form data-abide novalidate id="signInForm" {{action "sendResetPasswordEmail" on="submit"}}>
+  <div class="row">
+    {{#if message}}
+    <div class="small-12 columns">
+      <div data-alert {{bind-attr class=":alert-box isSuccess:warning isError:warning"}}>
+      {{{message}}}
+      </div>
+    </div>        
+    {{/if}}
+    <div class="small-12 columns email-field input-wrapper">
+      <label><small class="error">{{loc-x '/general/mandatory'}}</small>
+        {{input value=email type='text' required="true" pattern="email" placeholder="/general/type_your_email"}}
+      </label>                
+    </div>
+    <div class="small-12 columns">
+      <button type="submit" class="button login-button" style="width:100%">{{loc-x '/button/send_reset_link'}}</button>
+    </div>              
+ </div>
+</form>

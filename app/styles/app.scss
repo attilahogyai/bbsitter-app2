@@ -1,0 +1,1330 @@
+
+/* SCSS variables */
+@import "extends/colors";
+@import "extends/settings";
+//@import "foundation-icons";
+@import "pikaday";
+//@import "fonts";
+@import "fonts/font-awesome";
+
+
+
+
+// @import "foundation";
+
+// Or selectively include components
+@import
+//   "foundation/components/accordion",
+"foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+"foundation/components/breadcrumbs",
+"foundation/components/button-groups",
+"foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+
+//   "extends/forms",
+"foundation/components/forms",
+"foundation/components/grid",
+"foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+"foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+"foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+"foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+"foundation/components/sub-nav",
+"foundation/components/switches",
+//   "foundation/components/tables",
+"foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+"foundation/components/top-bar",
+"foundation/components/type",
+"foundation/components/offcanvas",
+"foundation/components/visibility";
+
+/* exteded foundation by me includes here */
+@import "extends/top-bar";
+
+
+/* compass include */
+
+@import "compass/css3/background-size";
+@import "compass/css3/images";
+@import "compass/css3/transition";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+@import "compass/css3/border-radius";
+
+@import "compass/css3/opacity";
+
+
+
+
+
+/* site styles*/
+html{
+  height:100%;
+}
+body{
+  min-height:100%;
+  background-color: $background-color;
+  //@include background(image-url("/assets/images/bg/coffee/coffee.jpg") no-repeat fixed center center / cover  rgba(100, 100, 100,1));
+  //@include background(image-url("bg/pack3/Retina-Size/05_2.jpg") no-repeat fixed center center / cover rgba(200, 200, 200, 0.5));
+  height:100%;
+  letter-spacing: 1px;
+  text-rendering: optimizeLegibility;
+}
+
+h1,h2,h3,h4,h5{
+  font-family: $body-font-family;
+}
+h5{
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+
+// spinner
+
+// This is just to center the spinner
+
+.spinner {
+  margin: auto;
+  height: 2em;
+  width: 2em;
+  animation: rotate 0.8s infinite linear;
+  border: 3px solid $primary-color;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+.text-danger{
+  color: $alert-color;
+}
+
+//*********** HACKS REALY ************//
+.fixed{
+  @extend .fixed;
+  top:1px;
+}
+
+
+
+.fa-check-square-o{
+  color:$success-color;
+}
+.fa-exclamation-circle{
+  color:$alert-color;
+}
+
+/**** GENERAL TYPES ****/
+.no-padding{
+  padding: 0px !important;
+}
+.no-margin{
+  margin: 0px !important;
+}
+.rounded-img{
+  @include border-radius(50%, 50%);
+}
+
+.focus-button{
+  @include button-style($secondary-color3, false, false, null, null);
+}
+
+.radio_wrapper{
+  label{
+    display: inline;
+    vertical-align: top;
+  }
+}  
+
+/* liquid-fire CSS */
+
+.liquid-container {
+  position: relative;
+  overflow: hidden;
+
+    /* without this, overflow:hidden won't take effect because the things
+       we're trying to hide are on a separate accelerated
+       context. Also, this prevents a tiny vertical jump when the
+       content switches to accelerated.  */
+       -webkit-transform: translateY(0);
+       -moz-transform: translateY(0);
+       transform: translateY(0);
+     }
+
+     .lm-container {
+      overflow: hidden;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+    }
+
+    .lf-dialog {
+      position: relative;
+      background: white;
+      padding: 1.5em;
+      border: 1px solid black;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 20em;
+    }
+
+    .lf-overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: black;
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .lf-modal-open {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+
+
+
+//** MAIN PAGE , 
+
+// HOW TO BOX
+.how-to-box{
+  letter-spacing: 0px;
+  img{
+    max-width: 153px;
+  }
+}
+
+
+//TOP BAR AND FOOTER
+
+
+.search-box{
+  @include background(image-url("/assets/images/bg/bg_child2.jpg") left no-repeat white);
+  @include background-size (cover);
+  .bg{
+    padding: $panel-padding;
+  }
+  p{
+    color:$searchbox-color;
+    line-height: 3em;
+  }
+  h5{
+    color:$searchbox-color;
+    letter-spacing: 2px;
+    font-family: $searchbox-font-family;
+    text-shadow: gray 0.02em 0.02em 0.04em;
+  }
+  h3,h2{
+    text-shadow: gray 0.02em 0.02em 0.04em;
+    color:$searchbox-color;
+    font-weight:bold;
+    letter-spacing: 2px;
+    font-family: $searchbox-font-family;
+  }
+  .mainSearchInput{
+    line-height: normal;
+    float: left;
+    font-size: 1em;
+    height: 3em;
+    width: 100%;    
+  }
+  .mainSearchButton{
+    line-height: normal;
+    background-color: $secondary-color3;
+    font-size: 1em;
+    height: 3em;
+    padding: 0px;
+    width: 100%;
+  }
+}
+
+.home-box{
+  @extend .search-box;
+  padding: 5*$panel-padding 0px;  
+  a.button{
+    opacity: 0.7;
+  }
+}
+
+.box-shadow{
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+.box-shadow:last-child{
+  margin-bottom: $panel-padding;
+}
+
+
+
+div.event-list-page{
+  @extend  .box-shadow;
+  background-color: $topbar-bg-color;
+  padding: $panel-padding;
+  div.event-list{
+    width: auto;
+    padding: 10px;
+    > div:first-child{
+      width: 80px;
+      float:left;
+    }
+    > div:last-child{
+
+    }
+  }
+  div.event-list:nth-child(even){
+    background-color: $bg-primary-color;
+  }
+  div.cal-day{
+    @include border-radius($global-radius);
+    display:table;
+    height: 4.5em;
+    width: 4.5em;   
+    color: $topbar-bg-color;
+    padding: 5px;
+    @extend .text-center;
+    div.date{
+      display: table-cell;
+      vertical-align: middle;
+    }
+    p{
+      margin: 0;
+      text-transform: capitalize;
+    }
+    p.wDay{
+      font-size: 0.8em;
+      line-height: 1em;
+    }
+    p.month{
+      line-height: 1em;
+    }
+    p.day{
+      font-size: 1.2em;
+      line-height: 1em;
+      font-weight: bold;
+    }
+  }
+  div.cal-detail{
+    p{
+      margin: 0;
+    }
+    p.desc,p.time{
+      overflow: hidden;
+      white-space: nowrap;
+      display: inline;
+    }
+  }
+}
+
+
+
+/* foundation extends */
+
+.on-off{
+  .switch{
+    float: left;
+    margin: 0px;
+  }
+  span{
+    vertical-align: middle;
+  }
+  
+}
+
+.reveal-modal{
+  a:not(.close-reveal-modal.close-icon){
+    text-decoration: underline;
+  }
+}
+
+div.multi-select{
+  @include form-element;
+  height: auto;
+  @include border-top-radius(1em);
+  margin-bottom: 0px;
+  p.alert-box{
+    white-space: nowrap;
+    display: inline-block;
+    @include border-radius(1em);
+    border-color: lighten($primary-color, 50%);
+    background-color: lighten($primary-color, 10%);
+    color: $button-font-color;
+    line-height: 1em;   
+    margin-bottom: 0.4em;
+    a:not(.button){
+      color: $button-font-color;
+      text-decoration: none;
+      opacity: 0.8;
+      display: inline;
+      font-size: 1em;
+    }
+  }
+  p.no-data{
+    color: $body-font-color;
+    background-color: inherit;
+    cursor: auto;
+  }
+}
+
+.xprt-nav{
+  margin-bottom: 0px;
+  dd{
+    margin-bottom: 0px;
+    white-space: nowrap;
+    a{
+      height: 2.5em;
+      line-height: 2.5em;
+      display: block;
+      text-transform: uppercase;
+    }
+    a.active{
+      background-color: $topbar-bg-color;
+      color: $primary-color;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    a.active:hover{
+      background-color: $topbar-bg-color;
+    }
+  }
+}
+.comment-panel{
+  border-color: scale-color($topbar-bg-color, $lightness: -10%);
+  background-color: scale-color($topbar-bg-color, $lightness: -3%);
+  p,li{
+    font-size: 0.8em;
+  } 
+}
+
+.status-history{
+  padding-top: $panel-padding;
+  p{
+    font-size:$form-label-font-size;
+  }
+  p.title{
+    border-bottom: 1px solid $l2-background-color;
+  }
+  .row{
+    padding-top: $panel-padding/2;
+    p{
+      padding: 0px;
+    }    
+  }
+}
+
+
+.xprt-nav-page{
+  background-color: $topbar-bg-color;
+  @extend .box-shadow;  
+  padding: 3% 0px;
+  a:not(a.button){
+    text-decoration: underline;
+  }
+}
+.xprt-nav-page-form{
+  @extend .xprt-nav-page;   
+  padding: 3%;
+}
+.input-wrapper{
+  margin-bottom: $panel-padding/2;
+  p{
+    padding: $form-spacing / 2;
+    white-space: nowrap;
+    margin: 0px; 
+    label{
+      display: inline;
+    }
+  }
+}
+
+
+
+.title-area{
+  .name h1{
+    text-transform:uppercase;
+    letter-spacing:5px;
+    font-family: $body-font-family;
+  }
+}
+h1.title{
+  text-transform:uppercase;
+  letter-spacing:5px;
+  font-family: $body-font-family;  
+  font-weight: normal;
+}
+
+.content-panel{
+  padding: $panel-padding;
+  background-color: $topbar-bg-color;
+  h3{
+    font-weight: bold;
+  }
+  h4,p,a,h3{
+    margin-bottom: 3px; 
+  }
+  h2{
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+}
+
+
+.border-top-radius{
+  @include border-top-radius(3px);
+}
+.border-top{
+  border-top:2px #E0E0E0 solid;
+}
+.border-bottom{
+  border-bottom:2px #E0E0E0 solid;
+}
+.margin-bottom{
+  margin-bottom: $panel-padding;
+}
+.padding-bottom{
+  padding-bottom: $panel-padding;
+}
+.padding-top{
+  padding-top: $panel-padding;
+}
+
+.rank,.rank-edit{
+  color: $secondary-color3;
+}
+.rank-edit{
+  cursor: $cursor-pointer-value;
+  i{
+    font-size:1.5em;
+    padding: 0 0.2em;
+  }
+}
+
+#main{
+  width: 100%;
+  max-width: 100%;
+  padding-bottom: $panel-padding;
+  background-color:$background-color;   
+}
+
+#footer{
+  .row.links{
+    @include background(image-url("/assets/images/bg/calendar.png") right no-repeat);
+  }
+  @extend .content-panel;
+  @extend .border-top;
+  background-color:rgba(51,51,51,0.97);
+  color:  white;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 2rem;
+  a,h3,h2,p{ 
+    font-family: inherit; 
+    display: block;
+    color:white;
+  }
+  hr{
+    border-color: lighten(rgba(51,51,51,0.97), 10%);
+  }
+}
+
+
+@mixin profileimg($width){
+  @extend .rounded-img;
+  height: $width;
+  width: $width;
+  overflow: hidden;
+  margin: auto;
+  @include background-size (cover);
+  background-position:center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $l5-background-color;
+  z-index: 100;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+nav{
+  div.profileimg{
+    @include profileimg(40px);  
+    width: 40px;
+    margin: 5px;
+  }
+}
+
+.event-editor{
+  ul.vcard{
+    margin: 0px;
+    border-style: none;
+  }
+  li.fn{
+    line-height: 40px; 
+    white-space: nowrap;
+  }
+  li.phone{
+    white-space: nowrap; 
+  }
+  div.profileimg{
+    @include profileimg(40px);  
+    width: 40px;
+    margin: 5px;
+    float: left;
+  }
+}
+
+.xprt-list{
+  margin-top: 20px;
+  div.summary{
+    float: left;
+    min-width: 100px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    div.profileimg{
+      @include profileimg(80px);  
+    }
+    a{
+      margin-top: 5px;
+    }
+  }
+  div.detail{
+    p{
+      margin: 0px;
+    }
+    p.desc{
+      overflow: hidden;
+      margin-right: 1em;
+    }
+    p.title{
+      overflow: hidden;
+      margin-right: 1em;
+      margin-bottom: 0px;
+      color: $primary-color;
+    }
+    p.title2{
+      font-size: 0.8em;
+      margin-right: 1em;
+      margin-bottom: 1em;
+    }
+    div.parent-box{
+      padding-top: 1em;
+    }
+    p.parent{
+      margin-top: 1em;
+      padding: 1em;
+      @include border-radius(5px);
+    }
+    a{
+      margin:0px;
+    }
+    a.button{
+      padding: 0.3em 1em;
+      font-size: 11px;
+      background-color: $l4-background-color;  
+      color: $body-font-color;
+    }
+    
+  }
+}
+.comments-panel > .xprt-list{
+  @include border-radius(5px);
+  padding: 1em 0;
+  margin: 1em 0;
+  background-color: $bg-primary-color;
+}
+
+
+.id-panel {
+  h4,p,a,h3{
+    margin-bottom: 3px; 
+  }
+  .card{
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    position: relative;
+    height: 100%;
+    .id-panel-name{
+      @extend .content-panel; 
+      div.profileimg{
+        @include profileimg(70px);
+        position: absolute;
+        right: $panel-padding;
+        top: $panel-padding;
+      }
+      div.age{
+        position: absolute;
+        right: $panel-padding;
+        top:90px;
+        font-size: 12px;
+        text-transform: lowercase;
+        white-space: nowrap;
+      }
+      div.profileimg-big{
+        @include profileimg(100px);
+        position: absolute;
+        right: $panel-padding;
+        top: $panel-padding;
+
+      }   
+      .rank{      
+        font-size:  12px;
+      }
+
+    }
+    .price{
+      color:$secondary-color3;
+    }
+    .id-panel-lens{
+      //@include border-top-right-radius(40px);
+      padding: $panel-padding;
+      position: relative;
+      background-color:rgba(243, 243, 243, 0.56);
+      p.location{
+        position: absolute;
+        right: $panel-padding;
+        bottom: $panel-padding;
+      }
+    }
+    .id-panel-action{
+      //position: absolute;
+      padding: $panel-padding;
+      bottom:0px;
+      //left: 0px;
+      width: 100%;
+      @include border-bottom-radius(3px);
+      @extend .border-top;
+      background-color: $topbar-bg-color;
+    }
+
+  }
+
+}
+
+
+.opinion-panel{
+  @extend .box-shadow; 
+  div.opinion{
+    div.profileimg{
+      @include profileimg(60px);
+    }
+    p.comment{
+      min-height: 100px;
+    }
+
+  }
+}
+
+
+// Autocomplete textbox STLYES
+div.autocomplete-text{
+  position: relative;
+  margin-bottom: $form-spacing;
+  >div{
+    position: relative;
+    float: left;
+    width: 100%;
+  }
+  i.titleIcon{
+    position: absolute;
+    left: $form-spacing / 2;
+    top: $form-spacing / 2;
+    font-size: $input-font-size * 2;
+    color: scale-color($input-font-color, $lightness: 70%);
+  }
+  i.clearIcon{
+    position: absolute;
+    right: $form-spacing / 2;
+    top: $form-spacing / 2;
+    font-size: $input-font-size * 2;
+    color: scale-color($input-font-color, $lightness: 70%);
+    cursor:pointer;
+    cursor:hand;
+  }
+  ul {
+    position: absolute;
+    background: white;
+    width: 100%;
+    z-index: 1100;
+    list-style-type: none;
+    margin: 0;
+    @extend .box-shadow;
+    li{
+      padding: 3px 5px;
+      cursor:pointer;
+    }
+    li.active,li:hover{
+      padding: 3px 5px;
+      background-color: $l2-background-color; 
+    }
+  }
+
+  input{
+    margin:0;
+  }
+  input.titleIcon{
+    padding-left: $form-spacing * 2;
+  }
+  input.clearIcon{
+    padding-right: $form-spacing * 2;
+  }
+}
+
+
+
+
+/* Title */
+
+span.title{
+  font-size: $input-font-size;
+  text-transform: capitalize;
+}
+
+
+.margin-top{
+  margin-top:1.25rem;
+}
+
+.success-fade-out{
+  @extend .success;
+  @include opacity(0.4);
+  @include transition-property(opacity);
+  @include transition-duration(2.5s);
+  @include transition-timing-function(ease-in);
+}
+
+// ********-
+// ** calendar STYLES
+// *********
+
+.calendar{
+  background-color: $topbar-bg-color;
+}
+
+@mixin hour-line-height{
+  height:2em;
+  line-height: 2em;
+}
+.calendar-header{
+  background: $topbar-bg-color;
+  padding: $panel-padding;
+}
+.calendar-panel{
+  @extend .panel;
+  padding:0;
+  margin:0;
+  border-bottom:none;
+  border-rigth:solid;
+  border-rigth-color:$l3-background-color;
+  border-rigth-width:1px;
+  border-left:none;
+  border-top:solid;
+  border-top-width:1px;
+  border-top-color:$l3-background-color;
+  background: $l1-background-color;
+  p.time{
+    padding-right:10%;
+    background-color: $l4-background-color;
+    display:block;
+    @include hour-line-height;
+  }
+  p.add-todo{
+    @extend .text-center;
+    @include hour-line-height;
+    background-color: $topbar-bg-color;
+    @include single-transition(background, 0.2s, ease, 0s);   
+    &:hover {
+      background: none repeat scroll 0 0 $secondary-color3;
+      color: $topbar-bg-color;
+    }
+  }
+  > p.add-todo > a{
+    color: darken($topbar-bg-color, 10%);
+  }
+  > p.add-todo:hover > a{
+    color: $topbar-bg-color;
+  }
+}
+
+.calendar-panel2{
+  @extend .calendar-panel;
+  background: $l1-5-background-color;
+  border-top:none;
+}
+.calendar-panel-disabled{
+  @extend .calendar-panel;
+  background: $l1-7-background-color;
+  p.time{
+    background: $l1-7-background-color;
+    color: $l4-background-color;
+  }
+}
+.calendar-panel-disabled2{
+  @extend .calendar-panel;
+  background: $l1-7-background-color;
+  border-top:none;
+  p.time{
+    background: $l1-7-background-color;
+    color: $l4-background-color;
+  }
+}
+
+
+.event-panel{
+  @extend .calendar-panel;
+  height:100%;
+  color: white;
+  background:$secondary-color;
+  box-sizing:border-box;
+  overflow: hidden;
+  a,p{
+    color: white;
+    font-size: 0.8em;
+    text-decoration: none;
+  }
+  div{
+    width: 100%;
+    overflow: hidden;
+    font-size: 0.9em;
+    white-space: nowrap;
+    position:relative;
+  }
+  div.name{
+    top:2px;
+    left:2px;
+  }
+  div.del{
+    top:30%;
+    left:5px;
+  }
+}
+
+
+
+.event-bg-1{
+  background:$event-status-1;
+}
+.event-bg-10{
+  background:$event-status-10;
+}
+.event-bg-20{
+  background:$event-status-20;
+}
+.event-bg-30{
+  background:$event-status-30;
+}
+.event-bg-40,.event-bg-50{
+  background:$event-status-40;  
+}
+
+.event-color-1{
+  color:$event-status-1;
+}
+.event-color-10{
+  color:$event-status-10;
+}
+.event-color-20{
+  color:$event-status-20;
+}
+.event-color-30{
+  color:$event-status-30;
+}
+.event-color-40,.event-color-50{
+  color:$event-status-40; 
+}
+
+.event-panel-1{
+  @extend .event-panel;
+  @extend .event-bg-1;
+}
+.event-panel-20{
+  @extend .event-panel;
+  @extend .event-bg-20;
+}
+.event-panel-10{
+  @extend .event-panel;
+  @extend .event-bg-10;
+}
+.event-panel-30{
+  @extend .event-panel;
+  @extend .event-bg-30;
+}
+.event-panel-40,.event-panel-50{
+  @extend .event-panel;
+  @extend .event-bg-40;
+}
+
+
+
+.event-panel-hidden{
+  @extend .event-panel;
+  background:$l3-background-color;
+}
+
+.week-time-col{
+  width:9%;
+  background-color: $l4-background-color;
+  @include hour-line-height;
+}
+.week-day-col{
+  width:13%;
+  background-color: $l3-background-color;
+  @include hour-line-height;
+}
+.day-full-col{
+  width:91%;
+  @include hour-line-height;
+}
+.day-full-col > p {
+  color: $background-color;
+  @include hour-line-height;
+}
+p.today{
+  background-image: url('/assets/images/actday.png');
+  background-position: center;
+  background-size: 50% 90%;
+  background-repeat: no-repeat;
+}
+
+
+
+.week-day-header{
+  @extend .week-day-col;
+  @extend .text-center;
+  background-color: $l4-background-color;
+  p{
+    @include hour-line-height;
+  }
+}
+
+
+.set-time-day{
+  padding: 5px;
+  @extend .text-center;
+  
+  p{
+    color: $primary-color;
+    font-weight: bold;
+    text-transform: capitalize;
+    @include hour-line-height;
+  }
+  span.label{
+    width:100%;
+  }
+  a.label.plus{
+    color: $primary-color;
+    background: inherit;
+    overflow: hidden;
+  }
+  input{
+    text-align: center;
+  }
+}
+
+#day-setup{
+  > div:nth-child(even) >div{
+    background: $l1-background-color;
+  }  
+  p,input{
+    margin: 0px;
+    background: inherit;
+  }
+}
+
+div.timeset input,div.timeset span.label{
+  width:50%;
+  float:left;
+}
+
+
+
+
+
+.primary-bg{
+  background-color: $primary-color;
+}
+
+.disabled{
+  opacity: 0.7;
+}
+
+
+
+a.active{
+  @extend .disabled;
+}
+
+.header-panel *, .header-panel input[type="text"]{
+  margin: 0px;
+}
+
+// search result styles
+.search-result-bar{
+  padding: 1em;
+  overflow: hidden;
+  .id-panel{
+    margin-bottom: $panel-padding;
+  }
+}
+.search-result-count-bar{
+  color: $info-color;
+  padding: 1em;
+}
+
+.search-result-bar .detail{
+  position:relative;
+  left:10px;
+}
+
+#result-slider{
+  margin:0px;
+}
+
+.highlight-bg{
+  background-color: $l2-background-color;
+}
+
+.low-button{
+  @extend .button;
+  margin: 0px;
+  padding: rem-calc(5) rem-calc(20);
+  background-color: $alert-color;
+  @include border-top-radius(3px);
+
+}
+.low-button:hover{
+  margin: 0px;
+  padding: rem-calc(5) rem-calc(20);
+  background-color: scale-color($l5-background-color, $lightness: $button-function-factor);
+}
+
+
+.grid-style{
+  > div{
+    padding:rem-calc(15) 0;
+    border-bottom-color: $l5-background-color;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+  }
+}
+
+
+div.profile-photo{
+  font-size: 12px;
+  line-height: 1.5em;
+  .input-holder{
+    margin:5px 0px;
+    width:100%;
+    position:relative;
+    input{
+      width: 100%;
+      cursor: pointer; 
+    }
+  }
+  
+  div.droppable{
+    width:100%;
+    text-align: center;
+  }
+  .files{
+    z-index:2;
+    position:relative;
+    height:100%;
+    width:100%;
+    opacity:0;
+    cursor: pointer;
+  }
+  .beutifier{
+    width: 100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    border-color: $l5-background-color;
+    color: $body-font-color;    
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+  }
+  .confirm-beutifier{
+    cursor:pointer;
+    width: 100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    border-color: $l5-background-color;
+    background-color: $alert-color;
+    color: $background-color;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px; 
+    z-index:4;
+  }
+}
+
+//***** Application modal styles
+///////
+.app-modal{
+  padding: 0px;
+  input{
+    margin: 0px;
+  }
+  .message{
+    border-style: none; 
+    a{
+      color: inherit;
+      font-size: inherit;
+      text-decoration: underline;
+    }
+  }
+  .close-icon{
+    padding: $panel-padding/2;
+    a{
+      font-size: 2em;
+      font-weight: bold;
+      position: static;
+      line-height: 1em;
+    }
+  }
+  a{
+    font-weight: normal;
+    line-height: 1em;
+  } 
+}
+
+.user-signup{
+  max-width: 410px;
+}
+.user-signin{
+  max-width: 320px; 
+  .foreign-login{
+    background-color: $l3-background-color;  
+  }
+  .social-text{
+    padding: 1.5em 0px;
+  }
+  .social-text{
+    font-size: 0.8em;
+  }
+  .login-button{
+      @include button-style($secondary-color3, true, false, null, null);  
+      width: 170px;
+      text-transform: uppercase;
+      font-size: 0.8em;
+      font-weight: bold;
+  }
+}
+
+a.google-button{
+  @include button-style(#de4b39, true, false, null, null);  
+  line-height: 20px;
+  padding: 10px 10px;
+  font-size: 0.8em;
+  width: 120px;
+}
+a.facebook-button{
+  @include button-style(#5b77b2, true, false, null, null);  
+  line-height: 20px;
+  padding: 10px 10px;
+  font-size: 0.8em;
+  width: 120px;
+}
+
+a.facebook-button:before,a.google-button:before {
+  margin-bottom: 0;
+  margin-left: -1em;
+  margin-right: 0.5em;
+  margin-top: 0;
+  background-repeat: no-repeat;
+  content: "";
+  float: left;
+  position: relative;
+  left: 9px;  
+  height: 20px;
+  width: 20px;
+}
+a.facebook-button:before{
+  background-image: url("/assets/images/facebook.png");
+  background-size: 18px 18px;
+}
+a.google-button:before {
+  background-image: url("/assets/images/gplus.png");
+  background-size: 18px 18px;
+}
+
+.reg-title1{
+  color: $success-color;
+  font-weight: bold;
+  display: block;
+  font-size:1.5em;
+}
+.reg-title2{
+  font-weight: bold;
+  display: block;
+  font-size:1.2em;
+}
+
+
+////////////////////
+
+// BX slider wrapper changes 
+.bx-wrapper{
+  height:auto !important;
+  .bx-viewport{
+    height:auto !important;
+  }
+  ul{
+    margin: 0px;
+  }
+}
+
+// Media queries
+@media #{$small-up} {
+  .set-time-day{
+    width:50%;
+  }
+
+}
+@media #{$medium-up} { 
+  .set-time-day{
+    width:20%;
+  }    
+} 
+@media #{$large-up} { 
+  .set-time-day{
+    width:14.2857%;
+  }      
+}
+

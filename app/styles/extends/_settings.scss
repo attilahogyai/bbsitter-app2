@@ -1,0 +1,113 @@
+// We use these as default colors throughout
+
+@import "foundation/functions";
+
+
+$font-shadow: white;
+
+$font-weight-normal: normal !default;
+
+
+
+
+/** TOP BAR EXTENDS **/
+$body-font-family: "Lato","Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+$searchbox-font-family:$body-font-family;
+
+
+
+$topbar-height: rem-calc(50);
+$tabbar-height: rem-calc(50);
+
+$button-font-family: $body-font-family;
+$topbar-link-font-family: $button-font-family;
+$topbar-title-font-size: rem-calc(20) !default;
+
+
+
+
+
+$off-canvas-bg: rgba(255,255,255,1);
+$off-canvas-link-color: $topbar-link-color;
+$tabbar-menu-icon-color: $topbar-link-color;
+$off-canvas-label-bg: rgba(255,255,255,1);
+$tabbar-left-section-border: solid 1px rgba(255,255,255,1);
+$topbar-divider-border-bottom: solid 1px scale-color($topbar-bg-color, $lightness: -5%);
+
+$off-canvas-overlay-background: rgba(#000, 0.5);
+$off-canvas-overlay-background-hover: rgba(#000, 0.05);
+
+
+/************* FORM EXTENDS abide form rewrite */
+/***********************************************/
+
+$form-spacing: rem-calc(20) !default;
+$form-label-font-color: scale-color(#000, $lightness: 30%) !default;
+$form-label-small-transform: capitalize !default;
+$input-error-message-padding: rem-calc(6 9 9) !default;
+$input-error-message-top: -1px !default;
+$input-error-message-font-size: rem-calc(12) !default;
+$input-error-message-font-weight: $font-weight-normal !default;
+$input-error-message-font-style: italic !default;
+
+
+
+
+@mixin form-label-error-color($color:$alert-color) { color: $color; }
+
+
+@mixin form-error-message($bg:$alert-color) {
+  display: inline;
+  padding: $input-error-message-padding;
+  margin-top: $input-error-message-top;
+  margin-bottom: $form-spacing;
+  font-size: $input-error-message-font-size;
+  font-weight: $input-error-message-font-weight;
+  font-style: $input-error-message-font-style;
+  // We can control the text color based on the brightness of the background.
+  //$bg-lightness: lightness($bg);
+  color: $alert-color;
+}
+
+.error {
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-bottom: $form-spacing
+  }
+  input[type="text"] {
+    border-color: scale-color($alert-color, $lightness: 50%);
+  }
+  label,
+  label.error,a {
+    @include form-label-error-color;
+  }
+
+  small.error {
+    @include form-error-message;
+  }
+
+  > label {
+    > small {
+      color: scale-color($form-label-font-color, $lightness: 15%);
+      background: transparent;
+      padding: 0;
+      text-transform: $form-label-small-transform;
+      font-style: normal;
+      font-size: 60%;
+      margin: 0;
+      display: inline;
+    }
+  }
+
+  span.error-message {
+    display: block;
+  }
+}
+
+input.error,
+textarea.error {
+  margin-bottom: 0;
+}
+label.error { @include form-label-error-color; }

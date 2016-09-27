@@ -1,0 +1,92 @@
+{{#liquid-if howto class="toggle"}}
+<div class="row how-to-box">
+<div class="column small-12 text-right">
+<br>
+<a href="#" {{action 'openHowTo'}}><i class="fa fa-2x fa-times"></i></a>
+</div>
+<div class="column large-3 medium-3 small-12 text-center"><img src="/assets/images/howto/dream.png" alt="Need a babysitter">
+<h4>Bébiszitterre van szükséged?</h4>
+<p>segítünk megtalálni</p>
+</div>
+<div class="column large-3 medium-3 small-12 text-center"><img src="/assets/images/howto/search_on_map.png" alt="Search for one">
+<h4>Keress neked megfelelőt</h4>
+<p>válogass lakhely vagy vélemény alapján</p>
+</div>
+<div class="column large-3 medium-3 small-12 text-center"><img src="/assets/images/howto/calendar.png" alt="Make an appointment">
+<h4>Foglalj időpontot online</h4>
+<p>vedd fel vele a kapcsolatot</p>
+</div>
+<div class="column large-3 medium-3 small-12 text-center"><img src="/assets/images/howto/babysitter.png" alt="Woow Babysitter">
+<h4>Már meg is vagy</h4>
+<p>végezd nyugodtan dolgodat</p>
+</div>
+</div>
+{{/liquid-if}}
+
+
+<div class="home-box">
+<div class="row bg">
+	<div class="columns small-12 text-center">
+		<h3>{{loc-x '/main/greeting'}}</h3>
+	</div>
+	<div class="columns hide-for-small-only medium-2">
+	&nbsp;
+	</div>
+	<div class="columns small-12 medium-8">
+
+	<div style="width:85%;float:left">
+	{{autocomplete-text inputClass="mainSearchInput" labelField='cityName' textField='cityName' inputText=cityText textChangedEvent="cityTextChanged" searchResult=citySearchResult valueSelectedEvent="doSearch" icon="fa fa-map-marker" placeholder="/main/search_city" triggerIfEnter=true autoSelect="false" forceOpen="true"}}
+	</div>
+	<div style="width:15%;float:left">
+	<button type="button" class="mainSearchButton" {{action 'doSearch'}}><i class="fa fa-search"></i></button>
+	</div>
+	<div class="text-center">
+	<a href="#" class="button" {{action 'openHowTo'}}>{{loc-x '/main/open_howto'}}</a>
+	</div>	
+	</div>
+	<div class="columns hide-for-small-only medium-2">
+	&nbsp;
+	</div>
+</div>
+</div>
+<div class="row search-result-bar">
+<div class="column small-12 medium-6">
+<h4>{{loc-x '/main/top_babysitter'}}</h4>
+</div>
+<div class="fb-like column small-12 medium-6" data-href="http://bbsitter.hu" data-layout="button" data-action="like" data-show-faces="false" data-share="true">
+</div>
+
+</div>
+<div class="row search-result-bar" id="offers">
+{{#each xprt in offerList}}
+
+<div class="id-panel column small-12 medium-6">
+<div class="card">
+	
+<div class="id-panel-name border-top-radius">
+		{{#link-to 'detail' xprt.id (to-ascii xprt.name)}}{{xprt.name}}{{/link-to}}
+		<!--
+		<div class="rank">{{!{xprt.rankFormat}}}</div>
+		-->
+		<div class="profileimg" style="background-image:url(/api/profileimage?u={{unbound xprt.useraccId}}&v={{unbound xprt.version}});">
+		</div>
+		<div class="age">{{loc-x-b '/xprt_data/age' xprt.age}} {{xprt.sexT}}</div>
+	</div>
+	
+	<div class="id-panel-lens">
+	<p>{{{xprt.experienceS}}}</p>
+	<p class="price">{{number-format xprt.unitPrice}}  {{xprt.currency.flag}}</p>
+	<p class="location">{{{xprt.targetLocation}}}</p>
+	</div>
+
+	<div class="id-panel-action">
+
+	{{#link-to 'detail' xprt.id (to-ascii xprt.name)}}<i class="fa fa-calendar"></i> {{loc-x '/general/book'}}{{/link-to}}
+	</div>
+
+</div>
+</div>
+{{/each}}
+
+
+</div>

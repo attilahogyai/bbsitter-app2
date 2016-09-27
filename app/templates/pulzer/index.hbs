@@ -1,0 +1,10 @@
+{{partial 'pulzer/menu'}}
+<div style="width:100%" id="container">
+	<div id="d{{ub-date-f actDate 'YYYYMMDD'}}">
+	{{#day-events date=actDate new="createEvent" next="jumpToNext" prev="jumpToPrev" settings=settings valueSelected=citySelected}}
+	{{#each aevent in eventList}}
+	{{view "event" event=aevent}}
+	{{/each}}
+	{{/day-events}}
+	</div>
+</div>

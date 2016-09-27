@@ -1,0 +1,97 @@
+
+$primary-color: #8E7187;
+$alert-color: #D30818;
+$success-color: #10B767;
+$warning-color: #AC5043;
+$secondary-color: #F46B61;
+// $alert-color: #f04124;
+// $success-color: #43AC6A;
+// $warning-color: #f08a24;
+$info-color: #a0d3e8;
+
+// $primary-color: #6b0080;
+
+/* As hex codes */
+
+$color-primary-0: #C7BFE6;	/* Main Primary color */
+$color-primary-1: #EFEEF2;
+$color-primary-2: #E7E4F2;
+$color-primary-3: #A598D9;
+$color-primary-4: #8674CC;
+
+/* primary BG*/
+$bg-primary-color: lighten($primary-color, 46%);
+
+/* As RGBa codes */
+
+$rgba-primary-0: rgba(199,191,230,1);	/* Main Primary color */
+$rgba-primary-1: rgba(239,238,242,1);
+$rgba-primary-2: rgba(231,228,242,1);
+$rgba-primary-3: rgba(165,152,217,1);
+$rgba-primary-4: rgba(134,116,204,1);
+
+
+
+
+// TOP BAR
+$topbar-bg: rgba(255,255,255,0.9);
+$topbar-bg-color: rgba(255,255,255,0.5);
+$topbar-link-bg: rgba(255,255,255,0);
+$topbar-link-bg-active:red;
+$topbar-link-color: darken($primary-color, 50%);
+$topbar-link-color-hover:$topbar-link-color;
+
+$topbar-dropdown-bg:rgba(255,255,255,0);;
+$topbar-link-bg-hover:darken($topbar-bg-color, 10%);
+
+$topbar-link-bg-active-hover:yellow;
+
+$tabbar-bg: $topbar-bg;
+
+
+/** SET for APPLICATION **/
+
+$body-font-color:#737279;
+$header-font-color:#737279;
+
+$background-color:#f5f5f5;
+
+
+
+$searchbox-color:#ffffff;
+
+
+
+$l1-primary-color: #1DCFAB;
+
+$secondary-color: #1F313A;
+$secondary-color2:#F92340;
+$secondary-color3:#F46B61;
+
+
+
+
+
+$crumb-bg: #ffffff;
+
+$sub-nav-active-bg: $primary-color;
+
+$lens-background-color: rgba(255,255,255,0.8);
+
+$l1-background-color:#F8F8F8;
+$l1-5-background-color:#F1F1F1;
+$l1-7-background-color:#EEEEEE;
+
+$l2-background-color:#E9E9E9;
+$l3-background-color:#E1E1E1;
+$l4-background-color:#D9D9D9;
+$l5-background-color:#cccccc;
+
+
+// EVENT STATUS COLORS
+$event-status-1:#E89C4E;
+$event-status-20:#2BB58C;
+$event-status-10:#F56C46;
+$event-status-30:$primary-color;
+$event-status-40:$warning-color;
+

@@ -1,0 +1,62 @@
+{
+  "name": "ember-cli-compass-compiler",
+  "version": "0.0.18",
+  "description": "Ember CLI Compass Compiler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ember-addon",
+    "ember-cli",
+    "ember",
+    "compass",
+    "scss",
+    "sass",
+    "css",
+    "compile",
+    "preprocessor",
+    "style"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quaertym/ember-cli-compass-compiler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/quaertym/ember-cli-compass-compiler/issues"
+  },
+  "author": {
+    "name": "Emre Unal"
+  },
+  "license": "MIT",
+  "readmeFile": "README.md",
+  "dependencies": {
+    "broccoli-caching-writer": "^0.4.2",
+    "dargs": "^2.0.3",
+    "lodash-node": "^2.4.1",
+    "rsvp": "^3.0.13"
+  },
+  "gitHead": "7b0c513f0ba1fa1254549dc9d9ef57ae874611e5",
+  "homepage": "https://github.com/quaertym/ember-cli-compass-compiler",
+  "_id": "ember-cli-compass-compiler@0.0.18",
+  "_shasum": "794cf73b445b74928a42d835f21dcdf1010f8d5d",
+  "_from": "ember-cli-compass-compiler@*",
+  "_npmVersion": "2.1.10",
+  "_nodeVersion": "0.10.33",
+  "_npmUser": {
+    "name": "quaertym",
+    "email": "emreunal99@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "quaertym",
+      "email": "emreunal99@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "794cf73b445b74928a42d835f21dcdf1010f8d5d",
+    "tarball": "http://registry.npmjs.org/ember-cli-compass-compiler/-/ember-cli-compass-compiler-0.0.18.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/ember-cli-compass-compiler/-/ember-cli-compass-compiler-0.0.18.tgz"
+}

@@ -1,0 +1,174 @@
+{{!view "event-editor" startTimeM=controller.startTimeM startTimeH=controller.startTimeH eventDate=controller.eventDate teszt=startTimeM}}
+<div class="row">
+   <div class="small-12 columns event-editor">
+      <form data-abide novalidate id="newEventForm">
+         <div class="row">
+            <div class="small-12 columns">
+               <div data-alert {{bind-attr class=":alert-box isSuccess:success isError:warning"}}>
+               {{#if message}}
+               {{message}}
+               {{else}}
+               {{#if model.id}}
+               {{loc-x '/event/modify'}}
+               {{else}}
+               {{loc-x '/event/new_init_text'}}
+               {{/if}}
+               {{/if}}
+            </div>
+         </div>
+         {{#unless isSuccess}}
+         {{#if model.id}}
+         <div class="small-12 medium-6 columns">
+            <ul class="vcard">
+               <li>{{loc-x '/event/creator'}}</li>
+               <li class="fn">
+                  <div class="profileimg" style="background-image:url(/api/profileimage?u={{unbound model.initiator.id}}&v={{unbound model.initiator.version}});"></div>
+                  {{model.initiator.name}}
+               </li>
+               {{#if model.isAccepted}}
+               <li class="phone"><i class="fa fa-phone"></i> {{model.initiator.phone}}</li>
+               {{/if}}
+            </ul>
+         </div>
+         <div class="small-12 medium-6 columns">
+            <ul class="vcard">
+               <li>{{loc-x '/event/addressee'}}</li>
+               <li class="fn">
+                  <div class="profileimg" style="background-image:url(/api/profileimage?u={{unbound model.host.id}}&v={{unbound model.host.version}});"></div>
+                  {{model.host.name}}
+               </li>
+               {{#if model.isAccepted}}
+               <li class="phone"><i class="fa fa-phone"></i> {{model.xprtDetail.phone}}</li>
+               {{/if}}
+            </ul>
+         </div>
+         <div class="small-12 medium-12 columns">
+            <p><label><b>{{loc-x '/event/status'}}:
+               {{{statusText}}}</b>
+               </label>
+               {{#if model.modifyDt}}
+               <label><b>
+               <i class="fa fa-clock-o"></i> {{loc-x '/event/modified'}}: {{date-f model.modifyDt 'LLL'}}
+               </b></label>
+               {{else}}
+               {{#if model.createDt}}
+               <label><b>
+               {{loc-x '/event/created'}}: {{date-f model.createDt 'LLL'}}
+               </b></label>
+               {{/if}}
+               {{/if}}
+            </p>
+         </div>
+         {{/if}}
+         <div class="small-12 medium-6 columns">
+            <label>{{loc-x '/event/name'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+            {{input value=name type='text' placeholder="" required="true" disabled=disableEdit class="abide"}}
+            </label>
+         </div>
+         <div class="small-12 medium-6 columns">
+            <label>{{loc-x '/event/from'}} * <small class="error">{{loc-x '/general/mandatory'}}</small>
+            {{pik-aday value=startDate disabled=disableEdit type='text' class="abide"}}
+            </label>
+         </div>
+         <div class="small-12 medium-6 columns">
+            <label>{{loc-x '/event/start_time'}}</label>
+            <div class="row">
+               <div class="small-6 columns">
+                  {{view "select" content=hourList 
+                  disabled=disableEdit value=startTimeH optionValuePath="content.id"
+                  optionLabelPath="content.idText"}}
+               </div>
+               <div class="small-6 columns">
+                  {{view "select" content=minuteList 
+                  disabled=disableEdit value=startTimeM optionValuePath="content.id"
+                  optionLabelPath="content.idText" name="startMinute"}}
+               </div>
+            </div>
+         </div>
+         <div class="small-12 medium-6 columns">
+            <label>{{loc-x '/event/end_time'}}</label>
+            <div class="row">
+               <div class="small-6 columns">
+                  {{view "select" content=hourList value=endTimeH optionValuePath="content.id" disabled=disableEdit
+                  optionLabelPath="content.idText"}}
+               </div>
+               <div class="small-6 columns">
+                  {{view "select" content=minuteList disabled=disableEdit value=endTimeM optionValuePath="content.id"
+                  optionLabelPath="content.idText" name="endMinute"}}
+               </div>
+            </div>
+         </div>
+         <div class="small-12 columns">
+            <label>{{loc-x '/event/addr'}}</label>
+            {{address-setter valueObject=model valueField='address'}}
+         </div>
+         {{#if hasLogList}}
+         <div class="small-12 columns status-history">
+            <p class="title">{{loc-x '/event/desc_history'}}</p>
+            <div class="row">
+               {{#each log in logList.content.content}}
+               <div class="small-12 columns">
+                  <div class="panel">
+                     <p>
+                        {{log.useracc.name}} - {{date-f log.createDt 'LLL'}}
+                        <br>
+                        {{log.comment}}
+                     </p>
+                  </div>
+               </div>
+               {{/each}}
+               <div class="small-12 columns">
+                  <div class="panel">
+                     <p>{{desc}}</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+   {{else}}
+   <div class="small-12 columns padding-top">
+   <label>{{loc-x '/event/desc'}}</label>
+   {{#if showActionComment}}
+   <p>{{desc}}</p>
+   {{else}}
+   {{textarea value=desc rows="6"}}
+   {{/if}}
+   </div>
+   {{/if}}
+   {{#if showActionComment}}
+   <div class="small-12 columns">
+   {{textarea value=actionComment rows="6" placeholder=placeholderActionComment}}              
+   </div>
+   {{/if}}
+   <div class="small-12 columns">
+   {{#if showSaveButton}}
+   <button type="button" class="button" {{action 'handleData'}}><i class="fa fa-floppy-o"></i> {{loc-x '/button/save'}}</button>
+   {{/if}}
+   {{#if showResignButton}}
+   <button type="button" class="button alert" {{action 'resign'}}><i class="fa fa-ban"></i> {{loc-x '/button/resign'}}</button>
+   {{/if}}
+   {{#if awaitingForAccept}}
+   {{#if isHost}}
+   <button type="button" class="button" {{action 'accept'}}><i class="fa fa-check"></i> {{loc-x '/button/accept'}}</button>
+   <button type="button" class="button alert" {{action 'reject'}}><i class="fa fa-ban"></i> {{loc-x '/button/reject'}}</button>
+   {{/if}}
+   {{/if}}
+   {{#if awaitingForClose}}
+   {{#if showCompletedButton}}
+   <button type="button" class="button" {{action 'completed'}}><i class="fa fa-check"></i> {{loc-x '/button/completed'}}</button>
+   {{/if}}
+   <button type="button" class="button alert" {{action 'fail'}}><i class="fa fa-ban"></i> {{loc-x '/button/fail'}}</button>
+   {{/if}}
+   </div>
+   {{/unless}}
+</div>
+</form>
+</div>
+</div>
+<div id="eventConfirmAlert" class="reveal-modal" data-reveal>
+   <h2>{{alertTitle}}</h2>
+   <p></p>
+   {{textarea value=comment cols="80" placeholder=alertPlaceHolder rows="6"}}
+   <input type="button" class="button yes" value="{{loc-x '/button/yes'}}"/>
+   <input type="button" class="button cancel" value="{{loc-x '/button/cancel'}}"/>
+   <a class="close-reveal-modal">&#215;</a>
+</div>

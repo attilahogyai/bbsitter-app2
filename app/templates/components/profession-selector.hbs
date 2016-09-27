@@ -1,0 +1,13 @@
+<div class="small-12 columns input-wrapper padding-top">
+  	<label><b>{{loc-x '/signup/target'}}</b></label>
+  	<span class="radio_wrapper">
+    <label for="target_0">{{view 'radiobutton' name="profession" selection=profession value="0" id="target_0" required="true"}} {{loc-x '/signup/target_0'}}</label>
+    <br>
+    <label for="target_79">{{view 'radiobutton' name="profession" selection=profession value="79" id="target_79" required="true"}} {{loc-x '/signup/target_79'}}</label>
+    </span>
+</div>
+<div class="small-12 columns">
+	<label>&nbsp;</label>
+	<button {{bind-attr class=":button done:success error:alert"}} 
+	{{bind-attr disabled="disabled"}} {{action 'makeSelection'}}>{{saveButtonText}}</button>
+</div>

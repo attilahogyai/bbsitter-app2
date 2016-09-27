@@ -1,0 +1,10 @@
+{{#if icon}}<i {{bind-attr class=titleIcon}}></i>{{/if}}{{input type="text" value=inputText placeholder=placeholder class=textStyle bubble="true" focus-out="focusOut" focus-in="focusIn" enter="setValue" required=required}}{{#if clearIcon}}<i class="fa fa-times clearIcon" {{action 'clearText'}}></i>{{/if}}
+{{#if open}}
+<div>
+<ul>
+{{#each displayResult as |city liindex|}}
+<li id="{{eval-expr 'controller.itemId(liindex)' controller=controller liindex=liindex}}">{{eval-expr 'controller.itemLabel(city)' controller=controller city=city}}</li>
+{{/each}}
+</ul>
+</div>
+{{/if}}

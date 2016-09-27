@@ -1,0 +1,162 @@
+<div id="fb-root"></div>
+<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="contain-to-grid fixed">
+    <nav class="tab-bar show-for-small">
+      <section class="left-small">
+      {{#if loading}}
+        <p class="spinner" style="left:5px;top:10px;position:relative;"/>
+       {{else}}
+        <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+      {{/if}}
+      </section>
+      <section class="middle tab-bar-section">
+        <h1 class="title">{{#link-to 'index'}}{{loc-x '/main/menu_title'}}{{/link-to}}</h1>
+      </section>
+    </nav>
+    
+    <nav class="top-bar hide-for-small" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+        <h1>{{#link-to 'index'}}{{{loc-x '/main/menu_title'}}}{{/link-to}}</h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          {{#if authenticated}}
+          {{#if isAdminUser}}
+          <li class="hide-for-medium">{{#link-to 'admin.editor'}}{{loc-x '/menu/admin'}}{{/link-to}}</li>
+          {{/if}}          
+          <li class="divider"></li>
+          <li>{{#link-to 'index'}}<i class="fa fa-search"></i> {{loc-x '/menu/index'}}{{/link-to}}</li>
+          <li class="divider"></li>
+          <li>{{#link-to 'pulzer.list'}}<i class="fa fa-calendar-o"></i> {{loc-x '/menu_bs/pulzer'}}{{/link-to}}</li>          
+          <li class="divider"></li>
+          <li>{{#link-to 'profile'}}<div class="profileimg" {{bind-attr style="profileImg"}}>&nbsp;</div> {{username}}{{/link-to}}</li>
+          <li class="divider"></li>
+          <li><a href="#" {{action 'signout'}} alt="{{loc-x '/menu/signout'}}" title="{{loc-x '/menu/signout'}}"><i class="fa fa-power-off"></i></a></li>
+          {{else}}
+          <li><a href="#" {{action 'jumpToSignup'}}>{{loc-x '/menu/signup'}}</a></li>
+          <li class="divider"></li>
+          <li><a href="#" {{action 'jumpToSignin'}}>{{loc-x '/menu/signin'}}</a></li>
+          {{/if}}
+        </ul>
+      </section>
+    </nav>
+    </div>
+    <aside class="left-off-canvas-menu fixed">
+      <ul class="off-canvas-list">
+        <li><label>&nbsp;</label></li>
+        {{#if authenticated}}
+        {{#if isAdminUser}}
+        <li>{{#link-to 'admin.editor'}}{{loc-x '/menu/admin'}}{{/link-to}}</li>
+        {{/if}}                
+        <li>{{#link-to 'index'}}<i class="fa fa-search"></i> {{loc-x '/menu/index'}}{{/link-to}}</li>
+        <li>{{#link-to 'pulzer.list'}}<i class="fa fa-calendar-o"></i> {{loc-x '/menu_bs/pulzer'}}{{/link-to}}</li>          
+        <li>{{#link-to 'profile'}}<i class="fa fa-user"></i> {{username}}{{/link-to}}</li>
+        <li><a href="#" {{action 'signout'}}><i class="fa fa-power-off"></i> {{loc-x '/menu/signout'}}</a></li>
+        {{else}}
+        <li><a href="#" {{action 'jumpToSignup'}}>{{loc-x '/menu/signup'}}</a></li>
+          <li class="divider"></li>
+        <li><a href="#" {{action 'jumpToSignin'}}>{{loc-x '/menu/signin'}}</a></li>
+        {{/if}}
+      </ul>
+    </aside>
+    <section class="main-section">
+      <div id="main">{{liquid-outlet}}</div>
+
+      <div id="footer">
+      <div class="row links">
+
+
+        <div class="medium-4 columns">
+        <a href="/blog/?page_id=8">{{loc-x '/menu/about'}}</a>
+        <a href="/blog/?page_id=25">Kapcsolat</a>
+        <hr>
+        {{#if authenticated}}
+        {{#link-to 'index'}}<i class="fa fa-search"></i> {{loc-x '/menu/index'}}{{/link-to}}
+        {{#link-to 'pulzer.list'}}<i class="fa fa-calendar-o"></i> {{loc-x '/menu_bs/pulzer'}}{{/link-to}}
+        <a href="#" {{action 'signout'}}><i class="fa fa-power-off"></i> {{loc-x '/menu/signout'}}</a>
+        {{else}}
+        <a href="#" {{action 'jumpToSignup'}}>{{loc-x '/menu/signup'}}</a>
+        <a href="#" {{action 'jumpToSignin'}}>{{loc-x '/menu/signin'}}</a>
+        {{/if}}
+        </div> 
+
+        <div class="medium-4 columns">
+        <a href="/blog/?page_id=17">
+        <h3>Szülőknek</h3>
+        Hogyan működik?</a>
+        
+        <a href="/blog/?page_id=22">
+        <h2>Bébiszittereknek</h2>
+        Miért jó ha regisztrálsz?
+        </a>        
+        </div> 
+        <div class="medium-4 columns">
+        {{#link-to 'terms'}}{{loc-x '/menu/terms'}}{{/link-to}}
+        {{#link-to 'privacy'}}{{loc-x '/menu/privacy'}}{{/link-to}}        
+        </div>  
+      </div>
+      <div class="row">
+      <div class="column small-12 text-center">
+      <hr>
+      <!--p>Csatlakozz hozzánk</p>
+      <h2>
+      <i class="fa fa-facebook-square fa-2"></i>
+      <i class="fa fa-google-plus-square fa-2"></i>
+      <i class="fa fa-twitter-square fa-2"></i>
+      <i class="fa fa-linkedin-square fa-2"></i>
+      </h2-->
+      <p>@ 2015 bbsitter.hu</p>
+      </div>
+      </div>
+      </div>
+    </section>
+    <a class="exit-off-canvas"></a>
+  </div>
+</div>
+
+<div id="errorAlert" class="reveal-modal" data-reveal>
+    <h2></h2>
+    <p></p>
+    <input type="button" class="button ok" value="{{loc-x '/button/ok'}}"/>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+<div id="confirmAlert" class="reveal-modal" data-reveal>
+    <h2>{{loc-x '/alert/confirm'}}</h2>
+    <p></p>
+    <input type="button" class="button alert yes" value="{{loc-x '/button/yes'}}"/>
+    <input type="button" class="button cancel" value="{{loc-x '/button/cancel'}}"/>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="application-popup" class="reveal-modal" data-reveal>
+<div class="row">
+<div class="small-10 columns close-icon">
+<span style="font-size:1.5em;line-height:1em;text-transform:uppercase">
+{{{loc-x '/main/menu_title'}}}
+</span>
+</div>
+<div class="small-2 columns text-right close-icon">
+<a href="#" {{action 'closeModal'}}>&#215;</a>
+</div>
+<div class="small-12 columns">
+{{outlet "application-popup-outlet"}}
+</div>
+</div>
+</div>
+
+{{#if loading}}
+<div id="loader" style="position:fixed;top:0px;left:0px;width:100%;height:100%;background:rgba(255, 255, 255, 0.2);z-index:10000">
+<div style="position:absolute;top:10px;width:100%;text-align:center;" class="hide-for-small">
+<p class="spinner"></p>
+<!--a class="fa fa-2x fa-spin fa-spinner hide-for-small" href="#" style="color:#10B767;left:5px;top:5px;position:relative;"><span></span></a-->
+
+<!--svg class="spinner" width="38px" height="38px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+   <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+</svg-->
+</div>
+</div>
+{{/if}}

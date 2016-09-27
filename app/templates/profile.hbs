@@ -1,0 +1,17 @@
+<div class="row">
+<div class="small-12 columns margin-top">
+<dl class="sub-nav xprt-nav">
+  <!--dt>Filter:</dt-->
+  <dd>{{#link-to 'profile.index'}}{{loc-x '/profile/personal_data'}}{{/link-to}}</dd>
+  {{#if isXprt}}
+  <dd>{{#link-to 'profile.xprt.index'}}{{loc-x '/profile_bs/xprt_data'}}{{/link-to}}</dd>
+  {{/if}}
+  
+</dl>
+
+</div>
+</div>
+{{outlet}}
+
+    
+

@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="large-12 column">
+	<ul class="inline-list">
+		<li>
+			<a href="#" {{action "listItems" "profession" on="click"}}>Profession</a>
+			<a href="#" {{action "listItems" "langtext" on="click"}}>Language</a>
+			<a href="#" {{action "listItems" "user" on="click"}}>User</a>
+			<a href="#" {{action "listItems" "event" on="click"}}>Event</a>
+			<a href="#" {{action "listItems" "xprt-detail" on="click"}}>Xprt</a>
+		</li>
+	</ul>
+	</div>
+</div>
+<form name="input" {{action "commit" on="submit"}}>
+{{#if message}}
+<div class="row">
+	<div class="large-12 column">
+	<div data-alert {{bind-attr class=":alert-box isError:warning  isCompleted:success-fade-out"}}>{{message}}</div>
+	</div>
+</div>
+{{#unless isEditMode}}
+<div class="row">
+	<div class="large-12 column"><a href="#" class="button" {{action "initNew" on="click"}}>{{loc-x '/button/new_record'}}</a></div>
+</div>
+{{/unless}}
+{{/if}}
+{{#if isEditMode}}
+
+{{#each field in fields}}
+<div class="row">{{log meta}}
+	<div class="large-12 column"><label for="name">{{field.fieldName}}
+	{{#if isTextarea}}
+	{{textarea rows="7" valueBinding='field.fieldValue'}}
+	{{else}}
+	{{input valueBinding='field.fieldValue' type=field.displayType}}
+	{{/if}}
+	</label></div>
+</div>
+{{/each}}
+
+ <div class="row">
+	<div class="large-12 column">
+	<button type="button" {{bind-attr disabled=isCompleted}} {{bind-attr class=":right :button isCompleted:disabled"}}  {{action "remove" on="click"}}>&times;{{loc-x '/button/delete'}}</button>
+	<button type="sumbit" {{bind-attr disabled=isCompleted}} {{bind-attr class=":left :button isCompleted:disabled"}}  {{action "commit" on="click"}}>{{loc-x '/button/save'}}</button>
+	</div>
+</div>
+{{/if}}
+</form>
+<div class="row">
+	{{#each obj in objectList}}
+	<div class="medium-4 small-12 columns"><a href="#" {{action "loadInstance" obj.id on="click"}} class="close"><small>{{obj.stringRepr}}</small></a></div>
+	{{/each}}
+</div>
+
+
+

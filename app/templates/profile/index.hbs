@@ -1,0 +1,116 @@
+<div class="row xprt-nav-page-form">
+  <form data-abide validate id="signInForm" {{action "doUpdate" on="submit"}} style="margin-bottom:10px">
+    <div class="small-12 medium-3 medium-push-9 columns">
+      <div class="panel comment-panel">
+        <p>{{{loc-x '/profile/email_comment'}}}</p>
+      </div>
+    </div>
+    <div class="small-12 medium-3 medium-pull-3 columns profile-photo">
+      {{#view view.dragDropFile}}
+      {{#if uploadStatus.error}}
+      <div class="error">Hiba történt. Kérjük próbáld meg később.</div>
+      {{/if}}
+
+      {{#each validFile in controller.validFiles}}
+      <div {{bind-attr class="className :file"}}>
+        {{!name}}
+        <!--a class="remove" {{!action "deleteFile" this}}>Discard.</a-->
+        {{view view.ImagePreview image=validFile}}
+      </div>
+      {{else}}
+      <img src="/api/profileimage?u={{unbound controller.instance.id}}&t={{unbound session.version}}" border="0">
+      {{/each}}
+      <div class="input-holder">
+        {{view view.MultipleInput }}
+        {{#if confirm}}
+        <div class="confirm-beutifier" {{action 'uploadFile'}}>
+          {{confirmText}}
+        </div>
+        {{else}}
+        <div class="beutifier">
+          {{loc-x '/profile/upload_photo'}}
+        </div>
+        {{/if}}
+      </div>
+      {{/view}}
+    </div>
+    <div class="columns small-12 medium-6 medium-pull-3">
+      <div class="row">
+        <div class="column small-12">
+          <label>{{loc-x '/general/name'}} * <small class="error">{{loc-x '/general/mandatory_name_pattern'}}</small>
+            {{input value=instance.name type='text' placeholder="" required="true" pattern="[a-zA-Z0-9 -\.,_\']+"}}
+          </label>
+        </div>
+        <div class="column small-12">
+          <label><i class="fa fa-envelope-o"></i> {{loc-x '/general/email'}}
+            {{input value=instance.email type='text' required="true" pattern="email" disabled='true'}}
+          </label>                
+        </div>
+        <div class="column small-12">
+          <div class="row collapse">
+            <label><i class="fa fa-phone"></i> {{loc-x '/general/phone'}} *
+            {{input value=instance.phone type='text' required="true" pattern="[0-9  -]{7,32}" placeholder="/profile/phone"}}
+            </label>
+          </div>
+        </div>
+        <div class="column small-12">
+          <button type="submit" {{bind-attr class=":button isProcessing:disabled"}}>{{loc-x '/button/save'}}</button>
+        </div>
+
+        <div class="column small-12">            
+          {{#unless isXprt}}
+          {{#open-close initValue=openBabySetup opentextCode="/profile/parent_setup"}}
+          <div class="panel comment-panel">
+            <p>{{loc-x '/profile/parent_comment'}}
+              {{#link-to 'index' class="button focus-button"}}{{loc-x '/button/search_bb'}}{{/link-to}}
+            </p>
+          </div>
+          {{/open-close}}    
+          {{#open-close initValue=openBabySetup opentextCode="/profile/sitter_setup"}}
+          <div class="panel comment-panel">
+            <p>{{loc-x '/profile/baby_comment'}}<br>
+              <button type="button" class="focus-button" {{action 'setupBabySitter'}} >{{loc-x '/button/be_babysitter'}}</button>
+            </p>
+          </div>
+          {{/open-close}}
+          {{/unless}}
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>    
+<div class="row xprt-nav-page">
+  <form data-abide validate id="signInForm" {{action "changePassword" on="submit"}} style="margin-bottom:10px">
+    <div class="hide-for-small medium-3 columns">
+      &nbsp;
+    </div>
+    <div class="columns small-12  medium-3 medium-push-6">
+      <div class="panel comment-panel">
+        <p>{{{loc-x '/profile/change_password_comment'}}}</p>
+      </div>
+    </div>
+    <div class="columns small-12 medium-6 medium-pull-3">
+      <div class="row">
+        <div class="column small-12">
+          <label>{{loc-x '/profile/change_password'}}<small class="error">{{loc-x '/general/mandatory_name_pattern'}}</small>
+            {{input value=password type='password' placeholder="/profile/actual_password" required="true"}}
+          </label>
+        </div>
+
+        <div class="column small-12">
+          <label>{{loc-x '/profile/new_password'}}<small class="error">{{loc-x '/general/mandatory_name_pattern'}}</small>
+            {{input value=newPassword type='password' placeholder="/profile/new_password" required="true" id="newPassword" pattern="[a-zA-Z\.0-9]{6,16}"}}
+          </label>
+        </div>
+        <div class="column small-12">
+          <label><small class="error">{{loc-x '/general/passwords_doesnt_match'}}</small></label>
+            <input type="password" placeholder="{{unbound locX_password_again}}" data-equalto="newPassword" id="passwordAgain"/>
+        </div>
+          <div class="column small-12">            
+            <button type="submit" class="button">{{loc-x '/profile/change_password'}}</button>
+          </div>
+        </div>
+      </div>
+    </form>  
+</div>  

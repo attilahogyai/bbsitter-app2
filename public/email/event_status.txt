@@ -1,0 +1,9 @@
+#if($statusChange)
+#if($event.getStatus()==20)
+Találkozó elfogadva
+#else
+Találkozó állapota változott - $statusChange
+#end
+#else
+Találkozó módosult
+#end

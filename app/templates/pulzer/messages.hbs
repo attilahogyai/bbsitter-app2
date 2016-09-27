@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="columns small-12 event-list-page comments-panel">
+
+    <div class="button-bar">
+      <ul class="button-group">
+        <li>
+          {{#link-to 'pulzer.messages' (query-params folder="in") class="tiny button"}}{{loc-x '/event/in_folder'}}{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'pulzer.messages' (query-params folder="out") class="tiny button"}}{{loc-x '/event/out_folder'}}{{/link-to}}
+        </li>
+      </ul>
+    </div>
+
+    {{#each message in messagesList}}
+
+
+    <div class="row xprt-list">
+      <div class="summary">
+        {{#if isOutbox}}
+          <div class="profileimg" style="background-image:url(/api/profileimage?u={{unbound message.addressee.id}}&v={{unbound message.addressee.version}});">
+          </div>
+        {{else}}
+          <div class="profileimg" style="background-image:url(/api/profileimage?u={{unbound message.useracc.id}}&v={{unbound message.useracc.version}});">
+          </div>
+        {{/if}}
+      </div>
+      <div class="detail">
+        <p class="title">
+          {{#if isOutbox}}
+          {{#link-to 'detail' 0 '-' (query-params userId=message.addressee.id)}}{{loc-x '/messages/addressee'}}: {{message.addressee.name}}{{/link-to}}
+          {{else}}
+          {{#link-to 'detail' 0 '-' (query-params userId=message.useracc.id)}}{{message.useracc.name}}{{/link-to}}        
+          {{/if}}
+          {{#if message.isUnreaded}}<i class="fa fa-exclamation-circle"></i>{{/if}}
+        </p>    
+        <p class="title2">
+          {{date-f message.createDt 'fromNow'}}, 
+          {{date-f message.createDt 'L LT'}}
+          {{#unless isOutbox}}
+          <a href="#" class="button round right" {{action 'openCommentPopup' message.useracc message}}>{{{loc-x '/button/reply'}}}</a>
+          {{/unless}}
+        </p>
+        <p class="desc">
+          {{message.comment}}
+          {{#if message.hasParent}}
+          <div class="parent-box"><a href="#" class="button round" {{action 'switchToggle' message}}>{{{loc-x '/messages/history'}}}</a>{{#if message.toggle}}<p class="parent">{{message.original.comment}}</p>{{/if}}</div>
+          {{/if}}
+        </p>
+      </div>
+    </div>
+    {{else}}
+    <div class="panel comment-panel">
+      {{#if showNext}}
+      {{loc-x '/messages/no_in_message'}}
+      {{else}}
+      {{loc-x '/messages/no_out_message'}}
+      {{/if}}
+    </div>
+    {{/each}}
+  </div>
+</div>

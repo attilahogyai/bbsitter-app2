@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bébiszitter kereső és közvetítő</title>
+    <meta name="description" content="Keress neked megfelelő bébiszittert, válogass különböző szempontok szerint, olvasd el mások tapasztalatait.">
+    <meta name="description" content="bébiszitter, munka, állás, kereső, közvetítő">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+  
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    {{content-for 'head'}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/app.css">
+    {{content-for 'head-footer'}}
+  </head>
+  <body onresize="if(Ember.changeSize){Ember.changeSize(); return true;}">
+    {{content-for 'body'}}
+
+    <script src="assets/vendor.js"></script>
+    <script src="assets/xprt.js"></script>
+
+    {{content-for 'body-footer'}}
+  </body>
+</html>

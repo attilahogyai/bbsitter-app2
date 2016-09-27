@@ -1,0 +1,107 @@
+{{#if hasSetup}}
+<div class="row header-panel">
+<div class="small-12 columns">
+<h3>
+{{loc-x '/profile/timetable'}}
+<hr>
+</h3>
+<br>
+</div>
+<div class="small-12 columns">
+<div class="row" >
+  <div class="columns small-12">
+  <div class="panel comment-panel">
+  <p>{{loc-x '/profile/timetable_text'}}</p>
+  </div>
+  </div>
+  <div class="columns small-12" id="day-setup">
+    {{#each weekDays as |days parentIndex|}}
+      <div class="set-time-day columns text-left" id="day-{{unbound _view.contentIndex}}">
+        <div class="box-shadow">
+          <p>{{date-f days.day 'dddd'}}</p>
+      <!-- timeline-->
+          {{#each days.period as |p|}}
+          <div class="minus">
+            <a href="#" class="label" style="width:100%" {{action 'delPeriod' days.period p parentIndex}}><i class="fa fa-minus-circle"></i><span >&nbsp;</span></a>
+          </div>
+          <div class="timeset">
+            <div><span class="label">{{loc-x '/timetable/fromH'}}</span><span class="label">{{loc-x '/timetable/toH'}}</span></div>
+            <div>
+              {{v-text-field type="number" value=p.from minValue=1 minValueOffset=1 maxValue=24 maxLength=2 focus-out="focusOutCheck"}}
+              {{v-text-field type="number" value=p.to minValue=p.from minValueOffset=1 maxValue=24 maxLength=2 focus-out="focusOutCheck"}}
+            </div>
+          </div>
+          {{/each}}
+          <div>
+            <a href="#" class="label plus" style="width:100%" {{action 'addPeriod' days.period _view.contentIndex}}><i class="fa fa-plus-circle"></i>&nbsp;{{loc-x '/timetable/more_period'}}</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+    </div>
+  <div class="columns small-12">
+  <input type="button" {{bind-attr class="isProcessing:disabled :button :tiny"}} value="{{loc-x '/button/save'}}" {{action 'saveSetup'}}>    
+  </div>
+</div>
+</div>
+</div>
+
+{{else}}
+
+
+<div class="row">
+<div class="small-12 columns">
+<h3>
+{{loc-x '/profile/no_timetable'}}
+</h3>
+</div>
+<div class="small-12 columns">
+
+{{#if is1}}
+<p>{{loc-x '/profile/timetable_setup_1'}}</p>
+{{view 'radiobutton' name="weekPeriod" selection=weekPeriod value="1" id="workdays"}}<label for="workdays">{{loc-x '/profile/timetable_setup_1_workdays'}}</label><br>
+{{view 'radiobutton' name="weekPeriod" selection=weekPeriod value="2" id="wholeweek"}}<label for="wholeweek">{{loc-x '/profile/timetable_setup_1_wholeweek'}}</label><br>
+{{view 'radiobutton' name="weekPeriod" selection=weekPeriod value="3" id="weekend"}}<label for="weekend">{{loc-x '/profile/timetable_setup_1_weekend'}}</label>
+<br>
+<br>
+<input type="button" value="{{loc-x '/button/next'}}" {{action 'nextSetup' 1}} class="button">
+{{/if}}
+
+{{#if is2}}
+<form>
+  <p>{{loc-x '/profile/timetable_setup_2'}}</p>
+  {{input type="checkbox" checked=twoPeriod id="twoPeriod" }}
+  <label for="twoPeriod">{{loc-x '/profile/timetable_setup_two_period'}}</label>
+  <div class="row">
+  <div class="columns small-4 medium-2">
+  <label for="p1from">{{loc-x '/general/from'}}</label>
+  {{input type="number" min="1" max="24" value=p1from id="p1from" required="true"}}
+  </div>
+  <div class="columns small-4 medium-2 end">
+  <label for="p1to">{{loc-x '/general/to'}}</label>
+  {{input type="number" min="1" max="24" value=p1to required="true"}}
+  </div>
+  </div>
+  {{#if twoPeriod}}
+  <div class="row">
+  <div class="columns small-4 medium-2">
+  <label for="p2from">{{loc-x '/general/from'}}</label>
+  {{input type="number" min="1" max="24" value=p2from}}
+  </div>
+  <div class="columns small-4 medium-2 end">
+  <label for="p2to">{{loc-x '/general/to'}}</label>
+  {{input type="number" min="1" max="24" value=p2to}}
+  </div>
+  </div>
+  {{/if}}
+  <br>
+  <!--input type="button" value="{{loc-x '/button/next'}}" {{action 'setupPeriods' 2}} class="button"-->
+  <input type="button" value="{{loc-x '/button/ready'}}" {{action 'setupReady'}} class="button">
+
+  </form>
+{{/if}}
+
+</div>
+</div>
+
+{{/if}}

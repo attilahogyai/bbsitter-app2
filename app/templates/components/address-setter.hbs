@@ -1,0 +1,13 @@
+<div>
+<div class="row">
+	<div class="small-6 columns">
+{{autocomplete-text labelField='label' textField='zip' modelItem=zipModel textChangedEvent="addressTextChanged" searchResult=existingAddressResult valueSelectedEvent="addressSelected" minCharacters='3' placeholder="/address/zip" autoSelect="false" eagerInputTextChange="true" required="true"}}
+	</div>
+    <div class="small-6 columns">
+{{autocomplete-text labelField='cityName' textField='cityName' modelItem=address.city textChangedEvent="cityTextChanged" searchResult=citySearchResult valueSelectedEvent="citySelected" icon="fa fa-map-marker" placeholder="/xprt_data/select_location_area" required="true"}}
+	</div>
+	<div class="small-12 columns">
+{{input value=address.street type='text' placeholder="/address/street" required="true" disabled=disableEdit class="abide"}}
+	</div>
+</div>
+</div>

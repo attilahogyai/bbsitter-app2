@@ -1,0 +1,44 @@
+<div class="row">
+<div class="columns small-12 event-list-page">
+
+<div class="button-bar">
+  <ul class="button-group">
+    <li>
+    {{#link-to 'pulzer.rating' (query-params direction="next") class="tiny button"}}{{loc-x '/event/next_ranks'}}{{/link-to}}
+    </li>
+    <li>
+    {{#link-to 'pulzer.rating' (query-params direction="past") class="tiny button"}}{{loc-x '/event/past_ranks'}}{{/link-to}}
+    </li>
+  </ul>
+</div>
+
+{{#each xprt in xprtDetailRatingList}}
+<div class="row xprt-list padding-bottom">
+	<div class="summary">
+		<div class="profileimg">
+			<img src="/api/profileimage?u={{unbound xprt.useraccId}}">
+		</div>
+	</div>
+	<div class="detail">
+		<p class="title border-bottom">
+		{{#link-to 'detail' xprt.id (to-ascii xprt.name)}}{{xprt.name}}{{/link-to}} - 
+		<a href="#" {{action 'openRankPopup' xprt}} class="button tiny">{{{loc-x '/event/update_rank'}}}</a>	
+		</p>	
+		<p class="rank">{{{xprt.rankFormat}}}</p>
+		<p class="desc">
+		{{xprt.description}}
+		</p>
+	</div>
+
+</div>
+{{else}}
+<div class="panel comment-panel">
+{{#if showNext}}
+{{loc-x '/event/no_xprt_for_rank'}}
+{{else}}
+{{loc-x '/event/no_xprt_past_rank'}}
+{{/if}}
+</div>
+{{/each}}
+</div>
+</div>

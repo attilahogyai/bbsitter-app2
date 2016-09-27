@@ -1,0 +1,50 @@
+<div class="row">
+<div class="columns small-12 event-list-page">
+
+<div class="button-bar">
+  <ul class="button-group">
+    <li>
+    {{#link-to 'pulzer.list' (query-params direction="next") class="tiny button"}}{{loc-x '/event/next_events'}}{{/link-to}}
+    </li>
+    <li>
+    {{#link-to 'pulzer.list' (query-params direction="past") class="tiny button"}}{{loc-x '/event/past_events'}}{{/link-to}}
+    </li>
+  </ul>
+</div>
+
+{{#each event in eventList}}
+<div class="row event-list">
+<div>
+<div {{bind-attr class=":cal-day event.bg"}}>
+<div class="date">
+<p class="month">{{event.month}}</p>
+<p class="day">{{event.day}}</p>
+<p class="wDay">{{event.wDay}}</p>
+</div>
+</div>
+</div>
+<div>
+<div class="cal-detail">
+<a href="#" {{action "editEvent" event}}>{{event.name}} - {{event.statusText}}</a>
+<p>
+{{#if (eval-expr 'controller.isMine(event)' controller=controller event=event)}}
+{{!#call-if-method controller 'isMine' event}}
+{{loc-x '/event/owncreated'}}
+{{else}}
+<a href="#" {{action 'openComment' event}}><i class="fa fa-comment-o"></i> {{call-method controller 'getPartnerName' event}}</a>
+{{!/call-if-method}}
+{{/if}}
+</p>
+<p class="time">
+<span><i class="fa fa-clock-o"></i>{{event.startHour}} - {{event.endHour}}</span>&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i>{{event.address.street}}<span class="hide-for-small-only">, {{event.address.city.cityName}}</span>
+</p>
+</div>
+</div>
+</div>
+{{else}}
+<div class="panel comment-panel">
+{{loc-x '/event/no_events'}}
+</div>
+{{/each}}
+</div>
+</div>

@@ -1,0 +1,55 @@
+<form data-abide novalidate id="signUpForm" {{action "doSignUp" on="submit"}}>
+	<div class="row">
+		{{#if message}}
+		<div class="small-12 columns">
+			<div data-alert {{bind-attr class=":alert-box isSuccess:success isError:warning :message"}}>
+			{{{message}}}
+			</div>
+		</div> 				
+		{{/if}}
+		{{#unless isRegSuccess}}
+		<div class="small-12 columns input-wrapper">
+			{{{loc-x '/main/join'}}}
+		</div>
+		<div class="small-12 columns input-wrapper padding-top padding-bottom">
+      	<label><b>{{loc-x '/signup/target'}}</b></label>
+      	<span class="radio_wrapper">
+        <label for="target_0">{{view 'radiobutton' name="profession" selection=profession value="0" id="target_0" required="true"}} {{loc-x '/signup/target_0'}}</label>
+        <br>
+        <label for="target_79">{{view 'radiobutton' name="profession" selection=profession value="79" id="target_79" required="true"}} {{loc-x '/signup/target_79'}}</label>
+        </span>
+      </div>
+		<div class="small-12 columns input-wrapper">
+			<label><small class="error">{{loc-x '/general/mandatory'}}</small>
+				{{input value=name type='text' placeholder="/general/name" required="true" pattern="[a-zA-Z-]{3,64}"}}
+			</label>
+		</div>
+		<div class="small-12 columns email-field input-wrapper">
+			<label>&nbsp;<small class="error">{{loc-x '/general/mandatory'}}</small>
+				{{input value=email type='text' required="true" pattern="email" placeholder="/general/email"}}
+			</label>
+		</div>
+		<div class="small-12 columns padding-top">
+			<label>{{loc-x '/general/set_password'}}<small class="error">&nbsp;</small>
+				{{input value=password id="password" type='password' placeholder="/general/password_format_desc_text" required="true" pattern="[a-zA-Z\.0-9]{6,16}"}}
+			</label>
+		</div>
+		<div class="small-12 columns">
+			<label>&nbsp;<small class="error">{{loc-x '/general/passwords_doesnt_match'}}</small>
+				<input type="password" placeholder="{{unbound passwordAgainPlaceholder}}" required data-equalto="password"/>
+			</label>
+		</div>
+		<div class="small-12 columns">
+			<label>&nbsp;</label>
+			{{input type="checkbox" required="true" name="contract" checked=contract}}
+			<label>
+			<a href="#" {{action 'readContract'}}>{{{loc-x '/signup/accept_terms_of_service_text'}}}</a>
+			</label>
+		</div>
+		<div class="small-12 columns">
+			<label>&nbsp;</label>
+			<button type="submit" {{bind-attr class=":button saving:disabled saved:success"}}>{{saveButtonText}}</button>
+		</div>
+		{{/unless}}  
+	</div>
+</form> 

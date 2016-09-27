@@ -1,0 +1,28 @@
+<div class="row">
+<div class="small-12 columns margin-top">
+<dl class="sub-nav xprt-nav">
+  <!--dt>{{!loc-x '/pulzer/view'}}: {{loc-x '/pulzer/week_view'}}</dt-->
+  <dd>{{#link-to 'pulzer.week' actDateS }}{{{loc-x '/pulzer/week_view'}}}{{/link-to}}</dd>  
+  <dd>{{#link-to 'pulzer.list'}}{{{loc-x '/pulzer/list_view'}}}{{/link-to}}</dd>
+  <dd>{{#link-to 'pulzer.messages'}}{{{loc-x '/pulzer/messages'}}}{{/link-to}}</dd>
+  <!--
+  {{!#unless isXprt}}
+  <dd>{{!#link-to 'pulzer.rating'}}{{!loc-x '/pulzer/rating'}}{{!/link-to}}</dd>
+  {{!/unless}}
+  -->
+  <!--dd><a href='' class='active'>{{loc-x '/pulzer/week_view'}}</a></dd-->
+  <!--
+	{{!#if dayRoute}}
+	<dd><a href='' class='active'>{{!loc-x '/pulzer/day_view'}}</a></dd>
+	{{!else}}
+	<dd>{{!#link-to 'pulzer.day' actDateS }}{{!loc-x '/pulzer/day_view'}}{{!/link-to}}</dd>
+	{{!/if}}
+	{{!#if weekRoute}}
+	-->
+	<!--dd><a href="" class='active'>{{!loc-x '/pulzer/week_view'}}</a></dd-->
+	{{!else}}
+	<!--dd>{{!#link-to 'pulzer.week' actDateS }}{{!loc-x '/pulzer/week_view'}}{{!/link-to}}</dd-->
+	{{!/if}}
+</dl>
+</div>
+</div>

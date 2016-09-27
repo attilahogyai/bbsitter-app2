@@ -1,0 +1,46 @@
+export default function(){
+  this.transition(
+    this.fromRoute('index'),
+    this.toRoute('detail'),
+    this.use('toLeft'),
+    this.reverse('toRight')
+  );
+  this.transition(
+    this.fromRoute('search'),
+    this.toRoute('detail'),
+    this.use('toLeft'),
+    this.reverse('toRight')
+  );
+
+  this.transition(
+  	this.fromRoute('index'),
+  	this.toRoute('search'),
+  	this.use('toDown'),
+  	this.reverse('toUp')
+  );
+  this.transition(
+  	this.fromRoute('pulzer'),
+  	this.toRoute('profile'),
+  	this.use('crossFade'),
+  	this.reverse('crossFade')
+  );
+  this.transition(
+  	this.fromRoute('index'),
+  	this.toRoute('pulzer'),
+  	this.use('toDown'),
+  	this.reverse('toUp')
+  );  
+  this.transition(
+  	this.fromRoute('index'),
+  	this.toRoute('profile'),
+  	this.use('toDown'),
+  	this.reverse('toUp')
+  );  
+  this.transition(
+    this.fromRoute('index'),
+    this.toRoute('search'),
+    this.use('toUp'),
+    this.reverse('toDown')
+  );  
+  
+};

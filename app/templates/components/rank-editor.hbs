@@ -1,0 +1,14 @@
+<h2>{{loc-x '/xprt_data/review'}}</h2>
+<div class="row padding-bottom">
+{{#if newRanks}}
+<div class="column small-12"><p>{{loc-x '/xprt_data/add_review'}}</p></div>
+{{else}}
+<div class="column small-12"><p>{{loc-x '/xprt_data/change_review'}}</p></div>
+{{/if}}
+<div class="column small-12">{{textarea value=rankComment rows="3" placeholder=commentPlaceholder}}</div>
+{{#each rank in ranks}}
+	<div class="column small-4"><p>{{rank.rankType.desc}}</p></div>
+	<div class="column small-8 rank-edit"><p>{{rank-star rank=rank minValue=1}}</p></div>
+{{/each}}
+<div class="column small-12"><a href="#" {{bind-attr class=":button :small saving:disabled saved:success"}} {{action 'saveRank'}}>{{saveButtonText}}</a></div>
+</div>

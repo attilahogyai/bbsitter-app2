@@ -1,0 +1,46 @@
+	<div class="row">
+		{{#if message}}
+		<div class="small-12 columns">
+			<div data-alert {{bind-attr class=":alert-box isSuccess:success isError:warning :message"}}>
+			{{{message}}}
+			</div>
+		</div> 				
+		{{/if}}
+		<form data-abide novalidate id="signInForm" {{action "doSignIn" on="submit"}}>
+		<div class="small-12 columns email-field input-wrapper">
+			<label><small class="error">{{loc-x '/general/mandatory'}}</small>
+				{{input value=email type='text' required="true" pattern="email" placeholder="/general/type_your_email"}}
+			</label>                
+		</div>
+		<div class="small-12 columns input-wrapper">
+			<label><small class="error">{{loc-x '/general/password_format_desc_text'}}</small>
+				{{input value=password type='password' required="true" pattern="[a-zA-Z\.0-9]{6,16}" placeholder="/general/type_your_password"}}
+			</label>
+		</div>
+		<div class="small-12 columns input-wrapper text-right" style="font-size:0.8em">
+		<a href="#" {{action 'openModal' 'user/forgot'}}>{{loc-x '/general/forgot_password'}}</a>
+		</div>
+		<div class="small-12 columns text-center">
+			<button type="submit" class="button login-button">{{loc-x '/button/signin'}}</button>
+		</div>              
+		</form>		
+		<div class="small-12 columns foreign-login social-text text-center">
+			{{{loc-x '/general/social_login'}}}
+		</div>              
+		<form method="post" id="googlePost" action="/api/googlelogin">
+		<div class="small-6 columns foreign-login text-center">
+		<a href="#" class="button google-button" {{action 'googlelogin'}}>Google</a>
+		</div>  
+		</form>
+		<form method="post" id="facebookPost" action="/api/facebooklogin">
+		<div class="small-6 columns foreign-login text-center">
+		<a href="#" class="button facebook-button" {{action 'facebooklogin'}}>Facebook</a>
+		</div>  
+		</form>
+		<div class="small-12 columns foreign-login social-text text-center">
+			{{loc-x '/general/not_registered_signup'}}
+		</div> 
+		<div class="small-12 columns padding-bottom foreign-login text-center">
+			<a rhef="#" class="button login-button" {{action 'jumpToSignup'}}>{{loc-x '/menu/signup'}}</a>		
+		</div>  		            		
+ </div>

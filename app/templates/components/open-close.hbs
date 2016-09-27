@@ -1,0 +1,10 @@
+{{#if status}}
+<a href="#" {{action 'toggle'}}><i class="fa fa-angle-double-down"></i> {{opentext}}</a>
+{{else}}
+<a href="#" {{action 'toggle'}}><i class="fa fa-angle-double-right"></i> {{opentext}}</a>
+{{/if}}
+<br>
+{{#liquid-if status class="toggle"}}
+{{yield}}
+{{else}}
+{{/liquid-if}}

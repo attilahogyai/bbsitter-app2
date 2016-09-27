@@ -1,0 +1,54 @@
+<div class="row header-panel">
+<div class="small-12 columns">
+<h3>
+{{loc-x '/profile/timetable_exceptions'}}
+<hr>
+</h3>
+<br>
+</div>
+<div class="small-12 columns">
+{{#if calendarSetup.isEmpty}}
+<div class="row" >
+  <div class="columns small-12">
+  <div class="panel comment-panel">
+  <p>{{{loc-x '/xprt_data/holidays_empty'}}}</p>
+  </div>
+  </div>
+</div>
+{{else}}
+<div class="row" >
+	<div class="columns small-12">
+	<div class="panel comment-panel">
+	<p>{{loc-x '/xprt_data/holidays_text'}}</p>
+	</div>
+	</div>
+	<div class="columns small-12 input-wrapper">
+
+	<div class="multi-select">
+				{{#each i in holidayList}}
+				<p data-alert class="alert-box">
+  				{{date-f i.day 'YYYY MMMM D.'}}&nbsp;&nbsp;<a href="#" {{action 'removeDate' i }}>&times;</a>
+  				</p>
+  				{{else}}
+  				<p data-alert class="alert-box">
+  				{{loc-x '/general/please_select'}}
+  				</p>
+				{{/each}}
+	</div>
+	</div>
+	<div class="columns small-12">
+	<div style="float:left">
+	{{pik-aday value=exceptionDay type='text' class="abide"}}
+	</div>
+	{{#if addEnabled}}
+	<input type="button" value="{{loc-x '/button/add'}}" {{action 'addDate' exceptionDay}} {{bind-attr class=":button :small addDisabled:disabled"}} style="height:2.6rem;padding:0px 15px">    
+	{{/if}}
+	{{#if saveEnabled}}
+	<input type="button" value="{{loc-x '/button/save'}}" {{action 'saveSetup'}} {{bind-attr class=":button :small isProcessing:disabled addDisabled:disabled :success"}} style="float:right;height:2.6rem;padding:0px 15px">    
+	{{/if}}
+	
+	</div>
+    </div>
+{{/if}}
+</div>
+</div>

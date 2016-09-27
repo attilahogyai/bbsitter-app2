@@ -1,0 +1,1 @@
+{{#each star in stars}}{{#if star.filled}}<i class="fa fa-star" {{action "setRank" star.i}}></i>{{/if}}{{#if star.half}}<i class="fa fa-star-half-o" {{action "setRank" star.i}}></i>{{/if}}{{#if star.empty}}<i class="fa fa-star-o" {{action "setRank" star.i}}></i>{{/if}}{{/each}}

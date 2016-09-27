@@ -1,0 +1,33 @@
+<div class="row xprt-nav-page">
+<form data-abide validate id="signInForm" {{action "changePassword" newPassword requestid email on="submit"}} style="margin-bottom:10px">
+	<div class="hide-for-small medium-3 columns">
+	&nbsp;
+	</div>
+	<div class="columns small-12  medium-3 medium-push-6">
+	<div class="panel comment-panel">
+		<p>{{loc-x '/profile/forgot_pw_change_comment'}}</p>
+	</div>
+	</div>
+	<div class="columns small-12 medium-6 medium-pull-3">
+	<div class="row">
+		<div class="small-12 columns email-field input-wrapper">
+			<label>{{loc-x '/general/type_your_email'}}<small class="error">{{loc-x '/general/mandatory'}}</small>
+				{{input value=email type='text' required="true" pattern="email" placeholder="/general/email_placeholder"}}
+			</label>
+		</div>		
+		<div class="column small-12">
+			<label>{{loc-x '/profile/new_password'}}<small class="error">{{loc-x '/general/password_format_desc_text'}}</small>
+				{{input value=newPassword type='password' placeholder="/profile/new_password" required="true" id="newPassword" pattern="[a-zA-Z\.0-9]{6,16}"}}
+			</label>
+		</div>
+		<div class="column small-12">
+			<label><small class="error">{{loc-x '/general/passwords_doesnt_match'}}</small></label>
+			<input type="password" placeholder="{{unbound locX_password_again}}" data-equalto="newPassword" id="passwordAgain"/>
+		</div>
+		<div class="column small-12">            
+			<button type="submit" class="button">{{loc-x '/profile/change_password'}}</button>
+		</div>
+	</div>
+	</div>
+</form>
+</div>            

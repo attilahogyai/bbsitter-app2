@@ -1,0 +1,11 @@
+
+.tab-bar,.top-bar{
+  z-index: 1000;
+  border-bottom: solid 1px scale-color($topbar-bg-color, $lightness: -20%); 
+}
+.tab-bar a{
+	color: $topbar-link-color;
+}
+.contain-to-grid{
+	background: none;
+}

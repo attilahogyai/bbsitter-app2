@@ -1,0 +1,52 @@
+<div class="search-box">
+<div class="bg">
+<form name="indexForm" {{action "doSearch" selectedCity on="submit"}}>
+<div class="row header-panel">
+	<div class="columns small-12 medium-10" style="padding:0px">
+		<div style="width:90%;float:left">
+		{{autocomplete-text inputClass="mainSearchInput" labelField='cityName' textField='cityName' inputText=cityText textChangedEvent="cityTextChanged" searchResult=citySearchResult valueSelectedEvent="doSearch" icon="fa fa-map-marker" placeholder="/main/search_city" triggerIfEnter=true autoSelect="false" forceOpen="false"}}
+		</div>
+		<div style="width:10%;float:left">
+		<button type="submit" class="mainSearchButton"><i class="fa fa-search"></i></button>
+		</div>
+	</div>
+	<div class="columns medium-2 hide-for-small-only">
+	<p>{{resultCountText}}</p>
+	</div>
+</div>
+</form>
+</div>
+</div>
+<div class="row search-result-bar" id="searchResults">
+
+{{#each xprt in searchResult}}
+<div class="id-panel column small-12 medium-6">
+<div class="card">
+	
+<div class="id-panel-name border-top-radius">
+		{{#link-to 'detail' xprt.id (to-ascii xprt.name)}}{{xprt.name}}{{/link-to}}
+		<!--
+		<div class="rank">{{!{xprt.rankFormat}}}</div>
+		-->
+		<div class="profileimg" style="background-image:url(/api/profileimage?u={{unbound xprt.useraccId}}&v={{unbound xprt.version}});">
+		</div>
+		<div class="age">{{loc-x-b '/xprt_data/age' xprt.age}} {{xprt.sexT}}</div>
+	</div>
+	
+	<div class="id-panel-lens">
+	<p>{{{xprt.experienceS}}}</p>
+	<p class="price">{{number-format xprt.unitPrice}}  {{xprt.currency.flag}}</p>
+	<p class="location">{{{xprt.targetLocation}}}</p>
+	</div>
+
+	<div class="id-panel-action">
+	{{#link-to 'detail' xprt.id (to-ascii xprt.name)}}<i class="fa fa-calendar"></i> {{loc-x '/general/book'}}{{/link-to}}
+	</div>
+
+</div>
+</div>
+
+{{else}}
+{{loc-x '/index/no_search_result'}}
+{{/each}}
+</div>

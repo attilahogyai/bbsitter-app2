@@ -1,0 +1,83 @@
+<div class="row">
+
+<div class="small-12 columns text-center">
+<h5>{{month}}</h5>
+</div>
+<div class="small-4 columns text-center">
+<a href="#" {{action 'prev'}}><i {{bind-attr class=":fa :fa-3x prevProcessing:fa-spin prevProcessing:fa-spinner:fa-chevron-circle-left"}}></i></a>
+</div>
+<div class="small-4 columns text-center">
+<h2>{{day}}</h2>
+</div>
+<div class="small-4 columns text-center">
+<a href="#" {{action 'next'}}><i {{bind-attr class=":fa :fa-3x nextProcessing:fa-spin nextProcessing:fa-spinner:fa-chevron-circle-right"}}></i></a>
+</div>
+<div class="small-12 columns text-center">
+<h4>{{dayStr}}</h4>
+</div>
+</div>
+
+<div class="row">
+<div id='calendar' class="small-12 columns">
+<div class="row">
+    <div class="week-time-col columns text-right calendar-panel">
+        <p class="time">
+            &nbsp;
+        </p>
+    </div>
+    <div class="day-full-col primary-bg disabled columns text-left calendar-panel">
+        <p>&nbsp;</p>
+    </div>
+</div>
+{{#each hours in hoursOfDay}}
+{{#if-eval 'this.isOpen(this.date, $$["hours"].hour)'}}
+<div class="row" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_00">
+	<div class="week-time-col columns text-right calendar-panel" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_00_time">
+	<p class="time">
+	{{loc-hour hours.hour 0}}
+	</p>
+	</div>
+	<div class="day-full-col columns text-left calendar-panel" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_00_event">		
+	<p class="add-todo">
+	<a href='#' {{action "new" hours.hour "00"}} class="fi-page-add"><i class="fa fa-plus-circle"></i></a>
+	</p>
+	</div>
+</div>	
+<div class="row" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_30">
+	<div class="week-time-col columns text-right calendar-panel2" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_30_time">
+	<p class="time">
+	&nbsp;
+	</p>
+	</div>
+	<div class="day-full-col columns text-left calendar-panel2" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_30_event">
+	<p class="add-todo">
+	<a href='#' {{action "new" hours.hour "00"}} class="fi-page-add"><i class="fa fa-plus-circle"></i></a>
+	</p>
+	</div>
+</div>
+	{{else}}
+<div class="row" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_00">
+	<div class="week-time-col columns text-right calendar-panel-disabled" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_00_time">
+	<p class="time">
+	{{loc-hour hours.hour 0}}
+	</p>
+	</div>
+	<div class="day-full-col columns text-left calendar-panel-disabled" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_00_event">		
+
+	</div>
+</div>	
+<div class="row" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_30">
+	<div class="week-time-col columns text-right calendar-panel-disabled2" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_30_time">
+	<p class="time">
+
+	</p>
+	</div>
+	<div class="day-full-col columns text-left calendar-panel-disabled2" id="{{unbound controller.dateS}}h{{unbound hours.hour}}_30_event">
+
+	</div>
+</div>
+{{/if-eval}}
+{{/each}}
+{{yield}}
+</div>
+</div>
